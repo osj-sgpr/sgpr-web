@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SGPR</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="dashboard.html" class="navbar-brand">
+                <i class="fas fa-cow"></i>
+                SGPR
+            </a>
+            
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="animais.html"><i class="fas fa-cow"></i> Animais</a></li>
+                <li><a href="financeiro.html"><i class="fas fa-dollar-sign"></i> Financeiro</a></li>
+                <li><a href="relatorios.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+            </ul>
+            
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name">Usuário</div>
+                    <div class="user-property">Propriedade</div>
+                </div>
+                <button class="logout-btn" onclick="Auth.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Cabeçalho -->
+            <div class="page-header">
+                <h1><i class="fas fa-home"></i> Dashboard</h1>
+                <p>Visão geral da sua propriedade rural</p>
+            </div>
+            
+            <!-- Cards de Estatísticas -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-cow"></i>
+                    </div>
+                    <div class="stat-value" id="totalAnimals">0</div>
+                    <div class="stat-label">Total de Animais</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-venus"></i>
+                    </div>
+                    <div class="stat-value" id="totalFemales">0</div>
+                    <div class="stat-label">Fêmeas</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mars"></i>
+                    </div>
+                    <div class="stat-value" id="totalMales">0</div>
+                    <div class="stat-label">Machos</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="stat-value" id="pregnantAnimals">0</div>
+                    <div class="stat-label">Gestantes</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-value" id="monthlyRevenue">R$ 0</div>
+                    <div class="stat-label">Receita Mensal</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-value" id="averageGMD">0 kg</div>
+                    <div class="stat-label">GMD Médio</div>
+                </div>
+            </div>
+            
+            <!-- Gráficos e Informações -->
+            <div class="dashboard-grid">
+                <!-- Gráfico de Animais por Categoria -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Distribuição do Rebanho
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="animalDistributionChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Gráfico Financeiro -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Evolução Financeira
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="financialChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Atividades Recentes -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-clock"></i>
+                            Atividades Recentes
+                        </h3>
+                        <button class="btn btn-outline" onclick="refreshActivities()">
+                            <i class="fas fa-sync-alt"></i>
+                            Atualizar
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="recentActivities" class="activities-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-cow text-primary"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Animal cadastrado</div>
+                                    <div class="activity-description">Novilha #001 adicionada ao rebanho</div>
+                                    <div class="activity-time">Há 2 horas</div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-dollar-sign text-success"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Receita registrada</div>
+                                    <div class="activity-description">Venda de leite - R$ 1.250,00</div>
+                                    <div class="activity-time">Ontem</div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-weight text-warning"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Pesagem realizada</div>
+                                    <div class="activity-description">15 animais pesados</div>
+                                    <div class="activity-time">2 dias atrás</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alertas e Lembretes -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bell"></i>
+                            Alertas e Lembretes
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="alerts" class="alerts-list">
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>
+                                    <strong>Vacinação pendente</strong>
+                                    <p>5 animais precisam de vacinação esta semana</p>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-calendar"></i>
+                                <div>
+                                    <strong>Partos previstos</strong>
+                                    <p>3 fêmeas com parto previsto para este mês</p>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Meta atingida</strong>
+                                    <p>GMD médio do mês superou a meta de 1,2 kg/dia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ações Rápidas -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bolt"></i>
+                        Ações Rápidas
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" onclick="quickAddAnimal()">
+                            <i class="fas fa-plus"></i>
+                            <span>Novo Animal</span>
+                        </button>
+                        
+                        <button class="quick-action-btn" onclick="quickAddFinancial()">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Lançamento Financeiro</span>
+                        </button>
+                        
+                        <button class="quick-action-btn" onclick="quickWeighing()">
+                            <i class="fas fa-weight"></i>
+                            <span>Registrar Pesagem</span>
+                        </button>
+                        
+                        <button class="quick-action-btn" onclick="generateReport()">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Gerar Relatório</span>
+                        </button>
+                        
+                        <button class="quick-action-btn" onclick="window.location.href='relatorios.html'">
+                            <i class="fas fa-download"></i>
+                            <span>Fichas de Campo</span>
+                        </button>
+                        
+                        <button class="quick-action-btn" onclick="backupData()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Backup Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-cow fa-spin"></i>
+            <p>Carregando dados...</p>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    
+    <style>
+        /* Estilos específicos do dashboard */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .page-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .activities-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .activity-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F8F9FA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .activity-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .activity-time {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .alerts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .alert {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid;
+        }
+        
+        .alert-warning {
+            background: #FFF8E1;
+            border-left-color: var(--warning-color);
+        }
+        
+        .alert-info {
+            background: #E3F2FD;
+            border-left-color: #2196F3;
+        }
+        
+        .alert-success {
+            background: #E8F5E8;
+            border-left-color: var(--success-color);
+        }
+        
+        .alert i {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        
+        .alert strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+        
+        .alert p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .quick-action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: var(--surface-color);
+            border: 2px solid #E0E0E0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        
+        .quick-action-btn:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .quick-action-btn i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .quick-action-btn span {
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</body>
+</html>
+

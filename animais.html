@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animais - SGPR</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="dashboard.html" class="navbar-brand">
+                <i class="fas fa-cow"></i>
+                SGPR
+            </a>
+            
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="animais.html" class="active"><i class="fas fa-cow"></i> Animais</a></li>
+                <li><a href="financeiro.html"><i class="fas fa-dollar-sign"></i> Financeiro</a></li>
+                <li><a href="relatorios.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+            </ul>
+            
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name">Usuário</div>
+                    <div class="user-property">Propriedade</div>
+                </div>
+                <button class="logout-btn" onclick="Auth.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Cabeçalho -->
+            <div class="page-header">
+                <h1><i class="fas fa-cow"></i> Gestão de Animais</h1>
+                <p>Controle completo do seu rebanho</p>
+            </div>
+            
+            <!-- Cards de Estatísticas -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-cow"></i>
+                    </div>
+                    <div class="stat-value" id="totalAnimalsCount">0</div>
+                    <div class="stat-label">Total de Animais</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-venus"></i>
+                    </div>
+                    <div class="stat-value" id="femaleCount">0</div>
+                    <div class="stat-label">Fêmeas</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mars"></i>
+                    </div>
+                    <div class="stat-value" id="maleCount">0</div>
+                    <div class="stat-label">Machos</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="stat-value" id="youngCount">0</div>
+                    <div class="stat-label">Jovens</div>
+                </div>
+            </div>
+            
+            <!-- Filtros e Ações -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-filter"></i>
+                        Filtros e Ações
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label for="searchAnimal">Buscar:</label>
+                            <input type="text" id="searchAnimal" placeholder="Número, nome ou ID...">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filterSex">Sexo:</label>
+                            <select id="filterSex">
+                                <option value="">Todos</option>
+                                <option value="Macho">Machos</option>
+                                <option value="Fêmea">Fêmeas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filterStatus">Status:</label>
+                            <select id="filterStatus">
+                                <option value="">Todos</option>
+                                <option value="Ativo">Ativo</option>
+                                <option value="Gestante">Gestante</option>
+                                <option value="Vendido">Vendido</option>
+                                <option value="Morto">Morto</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filterRace">Raça:</label>
+                            <select id="filterRace">
+                                <option value="">Todas</option>
+                                <option value="Nelore">Nelore</option>
+                                <option value="Angus">Angus</option>
+                                <option value="Brahman">Brahman</option>
+                                <option value="Gir">Gir</option>
+                                <option value="Mestiço">Mestiço</option>
+                            </select>
+                        </div>
+                        
+                        <div class="actions-group">
+                            <button class="btn btn-primary" onclick="showAddAnimalModal()">
+                                <i class="fas fa-plus"></i>
+                                Novo Animal
+                            </button>
+                            
+                            <button class="btn btn-secondary" onclick="importAnimals()">
+                                <i class="fas fa-upload"></i>
+                                Importar
+                            </button>
+                            
+                            <button class="btn btn-outline" onclick="exportAnimals()">
+                                <i class="fas fa-download"></i>
+                                Exportar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lista de Animais -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-list"></i>
+                        Lista de Animais
+                    </h3>
+                    <div class="card-actions">
+                        <button class="btn btn-outline" onclick="refreshAnimals()">
+                            <i class="fas fa-sync-alt"></i>
+                            Atualizar
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-container">
+                        <table class="table" id="animalsTable">
+                            <thead>
+                                <tr>
+                                    <th>Número</th>
+                                    <th>Nome</th>
+                                    <th>Sexo</th>
+                                    <th>Raça</th>
+                                    <th>Nascimento</th>
+                                    <th>Idade</th>
+                                    <th>Peso Atual</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="animalsTableBody">
+                                <!-- Dados serão carregados dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Paginação -->
+                    <div class="pagination" id="animalsPagination">
+                        <!-- Paginação será gerada dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal Novo/Editar Animal -->
+    <div id="animalModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="animalModalTitle">
+                    <i class="fas fa-cow"></i>
+                    Novo Animal
+                </h3>
+                <button class="close-btn" onclick="closeAnimalModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="animalForm">
+                    <input type="hidden" id="animalId">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="animalNumber">Número do Animal *</label>
+                            <input type="text" id="animalNumber" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="animalName">Nome</label>
+                            <input type="text" id="animalName">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="animalSex">Sexo *</label>
+                            <select id="animalSex" required>
+                                <option value="">Selecione</option>
+                                <option value="Macho">Macho</option>
+                                <option value="Fêmea">Fêmea</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="animalRace">Raça</label>
+                            <select id="animalRace">
+                                <option value="">Selecione</option>
+                                <option value="Nelore">Nelore</option>
+                                <option value="Angus">Angus</option>
+                                <option value="Brahman">Brahman</option>
+                                <option value="Gir">Gir</option>
+                                <option value="Mestiço">Mestiço</option>
+                                <option value="Outra">Outra</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="animalBirthDate">Data de Nascimento</label>
+                            <input type="date" id="animalBirthDate">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="animalBirthWeight">Peso ao Nascer (kg)</label>
+                            <input type="number" id="animalBirthWeight" step="0.1" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="animalCurrentWeight">Peso Atual (kg)</label>
+                            <input type="number" id="animalCurrentWeight" step="0.1" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="animalStatus">Status</label>
+                            <select id="animalStatus">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Gestante">Gestante</option>
+                                <option value="Vendido">Vendido</option>
+                                <option value="Morto">Morto</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="animalMother">Mãe (Número)</label>
+                            <input type="text" id="animalMother">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="animalFather">Pai (Número)</label>
+                            <input type="text" id="animalFather">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="animalObservations">Observações</label>
+                        <textarea id="animalObservations" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="saveAnimal()">
+                    <i class="fas fa-save"></i>
+                    Salvar
+                </button>
+                <button class="btn btn-secondary" onclick="closeAnimalModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Detalhes do Animal -->
+    <div id="animalDetailsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    Detalhes do Animal
+                </h3>
+                <button class="close-btn" onclick="Modal.hide('animalDetailsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="animalDetailsContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-cow fa-spin"></i>
+            <p>Carregando animais...</p>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/animais.js"></script>
+    
+    <style>
+        /* Estilos específicos da página de animais */
+        .filters-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+            gap: 20px;
+            align-items: end;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        
+        .filter-group input,
+        .filter-group select {
+            padding: 10px;
+            border: 2px solid #E0E0E0;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+        
+        .actions-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .table {
+            font-size: 0.9rem;
+        }
+        
+        .table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .animal-actions {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+        
+        .animal-actions button {
+            padding: 5px 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .btn-view {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-edit {
+            background: var(--warning-color);
+            color: white;
+        }
+        
+        .btn-delete {
+            background: var(--error-color);
+            color: white;
+        }
+        
+        .btn-view:hover,
+        .btn-edit:hover,
+        .btn-delete:hover {
+            opacity: 0.8;
+            transform: translateY(-1px);
+        }
+        
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .status-ativo {
+            background: #E8F5E8;
+            color: var(--success-color);
+        }
+        
+        .status-gestante {
+            background: #FFF3E0;
+            color: var(--warning-color);
+        }
+        
+        .status-vendido {
+            background: #E3F2FD;
+            color: #2196F3;
+        }
+        
+        .status-morto {
+            background: #FFEBEE;
+            color: var(--error-color);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .pagination button:hover:not(:disabled) {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination .active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .modal-content {
+            max-width: 800px;
+            width: 95%;
+        }
+        
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            padding: 20px 25px;
+            border-top: 1px solid #E0E0E0;
+        }
+        
+        @media (max-width: 768px) {
+            .filters-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .actions-group {
+                justify-content: center;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            .animal-actions {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</body>
+</html>
+
