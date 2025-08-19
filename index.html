@@ -1,69 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGPR - Sistema de Gestão de Propriedades Rurais</title>
     <link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/ficons/96b2d1_c3c41995985e4542bcee96c14fe1b8d3~mv2.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* ===== RESET E BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
+            height: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* ===== CONTAINER PRINCIPAL ===== */
+        .main-container {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .login-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            max-width: 1200px;
             width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .login-info {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            padding: 60px 40px;
-            color: white;
+        /* ===== TELA DE LOGIN ===== */
+        .login-container {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            align-items: center;
+            padding: 20px;
         }
 
-        .login-info::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('images/vaca.png') no-repeat center;
-            background-size: 300px;
-            opacity: 0.1;
-            transform: rotate(15deg);
-        }
-
-        .logo-section {
+        .login-header {
             text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 30px;
+            color: white;
         }
 
         .logo-container {
@@ -77,15 +57,11 @@
         .logo-image {
             width: 80px;
             height: 80px;
-            background: url('images/vaca.png') no-repeat center;
+            background: url('https://raw.githubusercontent.com/osj-sgpr/sgpr-web/main/images/vaca.png') no-repeat center;
             background-size: cover;
             border-radius: 50%;
             border: 3px solid rgba(255,255,255,0.3);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .logo-text {
-            text-align: left;
         }
 
         .logo-text h1 {
@@ -103,73 +79,22 @@
             margin-top: 5px;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .feature:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
-        }
-
-        .feature i {
-            font-size: 2rem;
-            color: #fff;
-            min-width: 40px;
-        }
-
-        .feature h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .feature p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
         .login-form-container {
-            padding: 60px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fafafa;
-        }
-
-        .login-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
+            margin-bottom: 20px;
         }
 
-        .login-form h2 {
-            font-size: 2.5rem;
+        .login-form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
             color: #333;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .login-form > p {
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
 
         .form-group {
@@ -179,8 +104,8 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
             font-weight: 600;
+            color: #333;
             font-size: 1rem;
         }
 
@@ -191,7 +116,8 @@
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 15px 20px;
             border: 2px solid #e0e0e0;
@@ -202,7 +128,8 @@
         }
 
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: #4CAF50;
             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
@@ -219,7 +146,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .login-btn:hover {
@@ -227,8 +154,10 @@
             box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
         }
 
-        .login-btn:active {
-            transform: translateY(0);
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .login-btn i {
@@ -250,6 +179,275 @@
             text-decoration: underline;
         }
 
+        /* ===== SISTEMA PRINCIPAL ===== */
+        .system-container {
+            display: none;
+            min-height: 100vh;
+            background: #f5f7fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            background: url('https://raw.githubusercontent.com/osj-sgpr/sgpr-web/main/images/vaca.png') no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .user-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .user-info .property-name {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card-icon.animals { background: #4CAF50; }
+        .card-icon.financial { background: #2196F3; }
+        .card-icon.reports { background: #FF9800; }
+        .card-icon.alerts { background: #E91E63; }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .card-content {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .alerts-container {
+            margin-top: 20px;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .alert-item.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .alert-item.info {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+
+        .alert-item.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .alert-icon {
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .alert-content h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .alert-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .btn-outline:hover {
+            background: #4CAF50;
+            color: white;
+        }
+
+        /* ===== LOADING E NOTIFICAÇÕES ===== */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -273,6 +471,12 @@
             font-size: 3rem;
             margin-bottom: 20px;
             color: #4CAF50;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .loading-spinner p {
@@ -293,23 +497,13 @@
             font-weight: 600;
             z-index: 10001;
             animation: slideIn 0.3s ease;
+            max-width: 400px;
         }
 
-        .notification-success {
-            background: #4CAF50;
-        }
-
-        .notification-error {
-            background: #f44336;
-        }
-
-        .notification-warning {
-            background: #ff9800;
-        }
-
-        .notification-info {
-            background: #2196F3;
-        }
+        .notification-success { background: #4CAF50; }
+        .notification-error { background: #f44336; }
+        .notification-warning { background: #ff9800; }
+        .notification-info { background: #2196F3; }
 
         @keyframes slideIn {
             from {
@@ -322,90 +516,10 @@
             }
         }
 
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .modal-header h3 {
-            color: #333;
-            font-size: 1.5rem;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #999;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .contact-item i {
-            color: #4CAF50;
-            font-size: 1.2rem;
-            width: 25px;
-        }
-
-        /* Responsivo */
+        /* ===== RESPONSIVO ===== */
         @media (max-width: 768px) {
             .login-container {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-            }
-
-            .login-info {
-                padding: 40px 30px;
-                text-align: center;
+                padding: 15px;
             }
 
             .logo-container {
@@ -417,46 +531,68 @@
                 font-size: 2.5rem;
             }
 
-            .features {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
             .login-form-container {
-                padding: 40px 30px;
+                padding: 30px 25px;
             }
 
-            .login-form h2 {
-                font-size: 2rem;
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .header-right {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .login-info,
-            .login-form-container {
-                padding: 30px 20px;
-            }
-
             .logo-text h1 {
                 font-size: 2rem;
             }
 
-            .feature {
-                padding: 15px;
+            .login-form-container {
+                padding: 25px 20px;
+            }
+
+            .dashboard-card {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body class="login-page">
+<body>
     <!-- Container Principal -->
-    <div class="login-container">
-        <!-- Lado Esquerdo - Informações -->
-        <div class="login-info">
-            <div class="logo-section">
+    <div class="main-container">
+        <!-- Tela de Login -->
+        <div id="loginScreen" class="login-container">
+            <div class="login-header">
                 <div class="logo-container">
                     <div class="logo-image"></div>
                     <div class="logo-text">
@@ -466,46 +602,8 @@
                 </div>
             </div>
             
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-cow"></i>
-                    <div>
-                        <h3>Gestão de Animais</h3>
-                        <p>Controle completo do seu rebanho</p>
-                    </div>
-                </div>
-                
-                <div class="feature">
-                    <i class="fas fa-chart-line"></i>
-                    <div>
-                        <h3>Relatórios Zootécnicos</h3>
-                        <p>Análises detalhadas e estatísticas</p>
-                    </div>
-                </div>
-                
-                <div class="feature">
-                    <i class="fas fa-dollar-sign"></i>
-                    <div>
-                        <h3>Controle Financeiro</h3>
-                        <p>Gestão de receitas e despesas</p>
-                    </div>
-                </div>
-                
-                <div class="feature">
-                    <i class="fas fa-file-pdf"></i>
-                    <div>
-                        <h3>Fichas de Campo</h3>
-                        <p>PDFs para uso no campo</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Lado Direito - Login -->
-        <div class="login-form-container">
-            <div class="login-form">
+            <div class="login-form-container">
                 <h2>Acesso ao Sistema</h2>
-                <p>Entre com suas credenciais para acessar</p>
                 
                 <form id="loginForm">
                     <div class="form-group">
@@ -524,17 +622,7 @@
                         <input type="password" id="password" required placeholder="Sua senha">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="property">
-                            <i class="fas fa-home"></i>
-                            Propriedade
-                        </label>
-                        <select id="property" required>
-                            <option value="">Carregando propriedades...</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="login-btn">
+                    <button type="submit" class="login-btn" id="loginBtn">
                         <i class="fas fa-sign-in-alt"></i>
                         Entrar no Sistema
                     </button>
@@ -546,6 +634,195 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Sistema Principal -->
+        <div id="systemScreen" class="system-container">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <div class="header-logo"></div>
+                        <div class="header-title">
+                            <h1>SGPR</h1>
+                            <p>Sistema de Gestão de Propriedades Rurais</p>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="user-info">
+                            <div class="user-name" id="userName">Usuário</div>
+                            <div class="property-name" id="propertyName">Propriedade</div>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Conteúdo Principal -->
+            <main class="main-content">
+                <div class="dashboard-grid">
+                    <!-- Card de Animais -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-icon animals">
+                                <i class="fas fa-cow"></i>
+                            </div>
+                            <h3 class="card-title">Gestão de Animais</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Controle completo do seu rebanho com informações detalhadas de cada animal.</p>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalAnimals">0</div>
+                                    <div class="stat-label">Total</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="maleAnimals">0</div>
+                                    <div class="stat-label">Machos</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="femaleAnimals">0</div>
+                                    <div class="stat-label">Fêmeas</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="averageWeight">0</div>
+                                    <div class="stat-label">Peso Médio</div>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="openAnimalsModule()">
+                                    <i class="fas fa-plus"></i>
+                                    Novo Animal
+                                </button>
+                                <button class="btn btn-outline" onclick="viewAnimalsReport()">
+                                    <i class="fas fa-list"></i>
+                                    Ver Todos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Financeiro -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-icon financial">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3 class="card-title">Controle Financeiro</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Gestão completa de receitas e despesas com 22 categorias organizadas.</p>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalRevenue">R$ 0</div>
+                                    <div class="stat-label">Receitas</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalExpenses">R$ 0</div>
+                                    <div class="stat-label">Despesas</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="balance">R$ 0</div>
+                                    <div class="stat-label">Saldo</div>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="openFinancialModule()">
+                                    <i class="fas fa-plus"></i>
+                                    Nova Transação
+                                </button>
+                                <button class="btn btn-outline" onclick="viewFinancialReport()">
+                                    <i class="fas fa-chart-line"></i>
+                                    Relatórios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card de Relatórios -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-icon reports">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3 class="card-title">Relatórios e Fichas</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Fichas de campo em PDF e relatórios zootécnicos com cálculos automáticos.</p>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="generateFieldForm('Pesagem')">
+                                    <i class="fas fa-weight"></i>
+                                    Ficha Pesagem
+                                </button>
+                                <button class="btn btn-primary" onclick="generateFieldForm('Inseminacao')">
+                                    <i class="fas fa-syringe"></i>
+                                    Ficha Inseminação
+                                </button>
+                                <button class="btn btn-outline" onclick="viewReports()">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Ver Relatórios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card de Alertas -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-icon alerts">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h3 class="card-title">Alertas e Lembretes</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="alerts-container" id="alertsContainer">
+                                <div class="alert-item warning">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-syringe"></i>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4>Vacinação pendente</h4>
+                                        <p>5 animais precisam de vacinação esta semana</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert-item info">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-baby"></i>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4>Partos previstos</h4>
+                                        <p>3 fêmeas com parto previsto para este mês</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert-item success">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4>Meta atingida</h4>
+                                        <p>GMD médio do mês superou a meta de 1,2 kg/dia</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn btn-outline" onclick="manageVaccinations()">
+                                    <i class="fas fa-calendar-check"></i>
+                                    Gerenciar Vacinas
+                                </button>
+                                <button class="btn btn-outline" onclick="manageGoals()">
+                                    <i class="fas fa-target"></i>
+                                    Gerenciar Metas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
     
     <!-- Loading Overlay -->
@@ -556,39 +833,397 @@
         </div>
     </div>
     
-    <!-- Modal de Suporte -->
-    <div id="supportModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-headset"></i> Suporte Técnico</h3>
-                <button class="close-btn" onclick="closeSupportModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Entre em contato conosco:</strong></p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>osjbeta@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>(63) 99277-9893</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Segunda a Sexta: 8h às 18h</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Scripts -->
-    <script src="js/config.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/auth.js"></script>
+    <script>
+        // ==================== CONFIGURAÇÃO ====================
+        const SGPR_CONFIG = {
+            API_URL: 'https://script.google.com/macros/s/AKfycbxkC2-X5jWFx2mfNn6-eGag0M9uy-k5gq6x35AVHeTZ1ylFPOu_0ddGphh6UpZ3gb57/exec',
+            SYSTEM_NAME: 'SGPR - Sistema de Gestão de Propriedades Rurais',
+            VERSION: '1.0.0'
+        };
+
+        // ==================== VARIÁVEIS GLOBAIS ====================
+        let currentUser = null;
+        let systemData = {
+            animals: [],
+            financial: [],
+            alerts: []
+        };
+
+        // ==================== INICIALIZAÇÃO ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('SGPR Sistema iniciado');
+            
+            // Verificar se há sessão salva
+            const savedUser = localStorage.getItem('sgpr_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    showSystem();
+                    loadDashboardData();
+                } catch (error) {
+                    console.error('Erro ao carregar sessão:', error);
+                    localStorage.removeItem('sgpr_user');
+                }
+            }
+            
+            // Configurar formulário de login
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+        });
+
+        // ==================== AUTENTICAÇÃO ====================
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                showNotification('Por favor, preencha todos os campos', 'error');
+                return;
+            }
+            
+            showLoading('Verificando credenciais...');
+            
+            try {
+                const response = await makeRequest('login', {
+                    email: email,
+                    password: password
+                });
+                
+                if (response.success) {
+                    currentUser = response.data.user;
+                    localStorage.setItem('sgpr_user', JSON.stringify(currentUser));
+                    
+                    showNotification('Login realizado com sucesso!', 'success');
+                    showSystem();
+                    loadDashboardData();
+                } else {
+                    showNotification(response.message || 'Erro no login', 'error');
+                }
+            } catch (error) {
+                console.error('Erro no login:', error);
+                showNotification('Erro de conexão. Tente novamente.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('sgpr_user');
+            showLogin();
+            showNotification('Logout realizado com sucesso', 'info');
+        }
+
+        // ==================== INTERFACE ====================
+        function showLogin() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('systemScreen').style.display = 'none';
+        }
+
+        function showSystem() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('systemScreen').style.display = 'block';
+            
+            // Atualizar informações do usuário
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('propertyName').textContent = currentUser.propertyName;
+            }
+        }
+
+        function showLoading(message = 'Carregando...') {
+            const overlay = document.getElementById('loadingOverlay');
+            const text = overlay.querySelector('p');
+            text.textContent = message;
+            overlay.classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        function showNotification(message, type = 'info') {
+            // Remover notificações existentes
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(n => n.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remover após 5 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // ==================== CARREGAMENTO DE DADOS ====================
+        async function loadDashboardData() {
+            if (!currentUser || !currentUser.propertySpreadsheetId) {
+                console.error('Usuário ou planilha não encontrados');
+                return;
+            }
+            
+            try {
+                // Carregar dados dos animais
+                await loadAnimalsData();
+                
+                // Carregar dados financeiros
+                await loadFinancialData();
+                
+                // Carregar alertas
+                await loadAlertsData();
+                
+            } catch (error) {
+                console.error('Erro ao carregar dados do dashboard:', error);
+                showNotification('Erro ao carregar dados do sistema', 'error');
+            }
+        }
+
+        async function loadAnimalsData() {
+            try {
+                const response = await makeRequest('getAnimals', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    systemData.animals = response.data || [];
+                    updateAnimalsStats();
+                }
+            } catch (error) {
+                console.error('Erro ao carregar animais:', error);
+            }
+        }
+
+        async function loadFinancialData() {
+            try {
+                const response = await makeRequest('getFinancial', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    systemData.financial = response.data || [];
+                    updateFinancialStats();
+                }
+            } catch (error) {
+                console.error('Erro ao carregar dados financeiros:', error);
+            }
+        }
+
+        async function loadAlertsData() {
+            try {
+                const response = await makeRequest('getAlerts', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    systemData.alerts = response.data || [];
+                    updateAlertsDisplay();
+                }
+            } catch (error) {
+                console.error('Erro ao carregar alertas:', error);
+            }
+        }
+
+        // ==================== ATUALIZAÇÃO DE ESTATÍSTICAS ====================
+        function updateAnimalsStats() {
+            const animals = systemData.animals;
+            
+            let totalAnimals = animals.length;
+            let maleCount = 0;
+            let femaleCount = 0;
+            let totalWeight = 0;
+            let animalsWithWeight = 0;
+            
+            animals.forEach(animal => {
+                if (animal.sexo === 'M' || animal.sexo === 'Macho') {
+                    maleCount++;
+                } else if (animal.sexo === 'F' || animal.sexo === 'Fêmea') {
+                    femaleCount++;
+                }
+                
+                if (animal.pesoAtual && !isNaN(parseFloat(animal.pesoAtual))) {
+                    totalWeight += parseFloat(animal.pesoAtual);
+                    animalsWithWeight++;
+                }
+            });
+            
+            const averageWeight = animalsWithWeight > 0 ? (totalWeight / animalsWithWeight).toFixed(0) : 0;
+            
+            document.getElementById('totalAnimals').textContent = totalAnimals;
+            document.getElementById('maleAnimals').textContent = maleCount;
+            document.getElementById('femaleAnimals').textContent = femaleCount;
+            document.getElementById('averageWeight').textContent = averageWeight + ' kg';
+        }
+
+        function updateFinancialStats() {
+            const transactions = systemData.financial;
+            
+            let totalRevenue = 0;
+            let totalExpenses = 0;
+            
+            transactions.forEach(transaction => {
+                const value = parseFloat(transaction.valor) || 0;
+                if (transaction.tipo === 'Receita') {
+                    totalRevenue += value;
+                } else if (transaction.tipo === 'Despesa') {
+                    totalExpenses += value;
+                }
+            });
+            
+            const balance = totalRevenue - totalExpenses;
+            
+            document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
+            document.getElementById('totalExpenses').textContent = formatCurrency(totalExpenses);
+            document.getElementById('balance').textContent = formatCurrency(balance);
+        }
+
+        function updateAlertsDisplay() {
+            const alertsContainer = document.getElementById('alertsContainer');
+            const alerts = systemData.alerts;
+            
+            if (alerts.length === 0) {
+                alertsContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Nenhum alerta no momento</p>';
+                return;
+            }
+            
+            alertsContainer.innerHTML = '';
+            
+            alerts.forEach(alert => {
+                const alertElement = document.createElement('div');
+                alertElement.className = `alert-item ${alert.type}`;
+                alertElement.innerHTML = `
+                    <div class="alert-icon">
+                        <i class="${alert.icon}"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>${alert.title}</h4>
+                        <p>${alert.message}</p>
+                    </div>
+                `;
+                alertsContainer.appendChild(alertElement);
+            });
+        }
+
+        // ==================== MÓDULOS DO SISTEMA ====================
+        function openAnimalsModule() {
+            showNotification('Módulo de animais em desenvolvimento', 'info');
+            // TODO: Implementar módulo de animais
+        }
+
+        function openFinancialModule() {
+            showNotification('Módulo financeiro em desenvolvimento', 'info');
+            // TODO: Implementar módulo financeiro
+        }
+
+        function viewAnimalsReport() {
+            showNotification('Relatório de animais em desenvolvimento', 'info');
+            // TODO: Implementar relatório de animais
+        }
+
+        function viewFinancialReport() {
+            showNotification('Relatório financeiro em desenvolvimento', 'info');
+            // TODO: Implementar relatório financeiro
+        }
+
+        function viewReports() {
+            showNotification('Módulo de relatórios em desenvolvimento', 'info');
+            // TODO: Implementar módulo de relatórios
+        }
+
+        async function generateFieldForm(formType) {
+            if (!currentUser || !currentUser.propertySpreadsheetId) {
+                showNotification('Erro: dados do usuário não encontrados', 'error');
+                return;
+            }
+            
+            showLoading(`Gerando ficha de ${formType}...`);
+            
+            try {
+                const response = await makeRequest('generateFieldForm', {
+                    formType: formType,
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    showNotification(`Ficha de ${formType} gerada com sucesso!`, 'success');
+                    
+                    // Abrir arquivo em nova aba
+                    if (response.data && response.data.fileUrl) {
+                        window.open(response.data.fileUrl, '_blank');
+                    }
+                } else {
+                    showNotification(response.message || 'Erro ao gerar ficha', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao gerar ficha:', error);
+                showNotification('Erro de conexão ao gerar ficha', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function manageVaccinations() {
+            showNotification('Módulo de vacinas em desenvolvimento', 'info');
+            // TODO: Implementar módulo de vacinas
+        }
+
+        function manageGoals() {
+            showNotification('Módulo de metas em desenvolvimento', 'info');
+            // TODO: Implementar módulo de metas
+        }
+
+        // ==================== UTILITÁRIOS ====================
+        async function makeRequest(action, data = {}) {
+            const formData = new FormData();
+            formData.append('action', action);
+            
+            Object.keys(data).forEach(key => {
+                if (typeof data[key] === 'object') {
+                    formData.append(key, JSON.stringify(data[key]));
+                } else {
+                    formData.append(key, data[key]);
+                }
+            });
+            
+            const response = await fetch(SGPR_CONFIG.API_URL, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            return await response.json();
+        }
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function showSupport() {
+            showNotification('Entre em contato: suporte@sgpr.com', 'info');
+        }
+
+        // ==================== TRATAMENTO DE ERROS ====================
+        window.addEventListener('error', function(event) {
+            console.error('Erro JavaScript:', event.error);
+            showNotification('Erro interno do sistema', 'error');
+        });
+
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Promise rejeitada:', event.reason);
+            showNotification('Erro de conexão', 'error');
+        });
+    </script>
 </body>
 </html>
 
