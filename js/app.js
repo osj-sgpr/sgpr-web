@@ -24,7 +24,7 @@ const SGPR = {
     
     // Verificar configuração
     checkConfiguration() {
-        if (this.config.API_URL === 'SUBSTITUA_PELA_URL_DO_SEU_GOOGLE_APPS_SCRIPT') {
+        if (this.config.API_URL === 'https://script.google.com/macros/s/AKfycbxkC2-X5jWFx2mfNn6-eGag0M9uy-k5gq6x35AVHeTZ1ylFPOu_0ddGphh6UpZ3gb57/exec') {
             this.showConfigurationError();
             return false;
         }

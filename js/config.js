@@ -1,11 +1,11 @@
 /**
- * SGPR - Arquivo de Configuração
- * CONFIGURADO COM OS LINKS FORNECIDOS
+ * SGPR - Arquivo de Configuração (Versão Segura)
+ * Os links sensíveis ficam apenas no Google Apps Script
  */
 
-// ✅ CONFIGURAÇÃO ATUALIZADA ✅
+// ✅ CONFIGURAÇÃO SEGURA ✅
 const SGPR_CONFIG = {
-    // URL do Google Apps Script (Web App)
+    // URL do Google Apps Script (Web App) - CONFIGURE AQUI
     API_URL: 'https://script.google.com/macros/s/AKfycbxkC2-X5jWFx2mfNn6-eGag0M9uy-k5gq6x35AVHeTZ1ylFPOu_0ddGphh6UpZ3gb57/exec',
     
     // Configurações do sistema
@@ -27,6 +27,4 @@ const SGPR_CONFIG = {
 
 // Exportar configuração
 window.SGPR_CONFIG = SGPR_CONFIG;
-
-
 

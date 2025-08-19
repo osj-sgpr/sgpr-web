@@ -1,6 +1,6 @@
 # 🐄 SGPR - Sistema de Gestão de Propriedades Rurais
 
-Sistema web moderno e gratuito para gestão completa de propriedades rurais.
+Sistema web moderno para gestão completa de propriedades rurais.
 
 ## 🌟 Características
 
@@ -80,8 +80,8 @@ Consulte o arquivo `MANUAL_INSTALACAO_LEIGO.md` para instruções detalhadas pas
 
 ## 🆘 Suporte
 
-- **Email**: suporte@sgpr.com
-- **WhatsApp**: (63) 99999-9999
+- **Email**: osjbeta@gmail.com
+- **WhatsApp**: (63) 99277-9893
 - **Documentação**: Consulte os arquivos .md
 
 ## 📄 Licença
