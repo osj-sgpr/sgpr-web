@@ -28,3 +28,5 @@ const SGPR_CONFIG = {
 // Exportar configuração
 window.SGPR_CONFIG = SGPR_CONFIG;
 
+
+
