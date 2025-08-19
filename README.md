@@ -62,7 +62,7 @@ Sistema web moderno e gratuito para gestão completa de propriedades rurais.
 
 ## 📖 Manual Completo
 
-Consulte o arquivo `MANUAL_INSTALACAO.md` para instruções detalhadas passo a passo.
+Consulte o arquivo `MANUAL_INSTALACAO_LEIGO.md` para instruções detalhadas passo a passo.
 
 ## 🔐 Segurança
 
@@ -80,7 +80,8 @@ Consulte o arquivo `MANUAL_INSTALACAO.md` para instruções detalhadas passo a p
 
 ## 🆘 Suporte
 
-- **Email**: osjbeta@gmail.com
+- **Email**: suporte@sgpr.com
+- **WhatsApp**: (63) 99999-9999
 - **Documentação**: Consulte os arquivos .md
 
 ## 📄 Licença

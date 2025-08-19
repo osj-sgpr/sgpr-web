@@ -1,10 +1,9 @@
 /**
  * SGPR - Arquivo de Configuração
- * IMPORTANTE: Configure estas variáveis antes de usar o sistema
+ * CONFIGURADO COM OS LINKS FORNECIDOS
  */
 
-// ⚠️ CONFIGURAÇÃO OBRIGATÓRIA ⚠️
-// Substitua pela URL do seu Google Apps Script
+// ✅ CONFIGURAÇÃO ATUALIZADA ✅
 const SGPR_CONFIG = {
     // URL do Google Apps Script (Web App)
     API_URL: 'https://script.google.com/macros/s/AKfycbxkC2-X5jWFx2mfNn6-eGag0M9uy-k5gq6x35AVHeTZ1ylFPOu_0ddGphh6UpZ3gb57/exec',
@@ -25,11 +24,6 @@ const SGPR_CONFIG = {
     DEFAULT_REPORT_PERIOD: 'current_month',
     MAX_EXPORT_RECORDS: 1000
 };
-
-// Validação da configuração
-if (SGPR_CONFIG.API_URL === 'https://script.google.com/macros/s/AKfycbxkC2-X5jWFx2mfNn6-eGag0M9uy-k5gq6x35AVHeTZ1ylFPOu_0ddGphh6UpZ3gb57/exec') {
-    console.error('⚠️ ERRO: Configure a URL do Google Apps Script no arquivo config.js');
-}
 
 // Exportar configuração
 window.SGPR_CONFIG = SGPR_CONFIG;
