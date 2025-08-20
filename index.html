@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPR - Sistema de Gestão de Propriedades Rurais</title>
     <link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/ficons/96b2d1_c3c41995985e4542bcee96c14fe1b8d3~mv2.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -22,14 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== CONTAINER PRINCIPAL ===== */
-        .main-container {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
         /* ===== TELA DE LOGIN ===== */
         .login-container {
             min-height: 100vh;
@@ -38,6 +30,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
         }
 
         .login-header {
@@ -55,35 +48,71 @@
         }
 
         .logo-image {
-            width: 80px;
-            height: 80px;
-            background: url('https://raw.githubusercontent.com/osj-sgpr/sgpr-web/main/images/vaca.png') no-repeat center;
+            width: 100px;
+            height: 100px;
+            background: url('https://github.com/osj-sgpr/sgpr-web/blob/main/images/vaca.png') no-repeat center;
             background-size: cover;
             border-radius: 50%;
-            border: 3px solid rgba(255,255,255,0.3);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
         .logo-text h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
         }
 
         .tagline {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+            margin-top: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            max-width: 800px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .feature-title {
             font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
             opacity: 0.9;
-            font-weight: 300;
-            margin-top: 5px;
+            color: white;
         }
 
         .login-form-container {
             background: white;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             width: 100%;
             max-width: 450px;
             margin-bottom: 20px;
@@ -115,9 +144,7 @@
             width: 20px;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group input {
             width: 100%;
             padding: 15px 20px;
             border: 2px solid #e0e0e0;
@@ -127,9 +154,7 @@
             background: white;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #4CAF50;
             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
@@ -164,26 +189,11 @@
             margin-right: 10px;
         }
 
-        .login-footer {
-            text-align: center;
-            color: #666;
-        }
-
-        .login-footer a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
         /* ===== SISTEMA PRINCIPAL ===== */
         .system-container {
             display: none;
             min-height: 100vh;
-            background: #f5f7fa;
+            background: #f8f9fa;
         }
 
         .header {
@@ -191,13 +201,16 @@
             color: white;
             padding: 15px 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -208,16 +221,18 @@
         }
 
         .header-logo {
-            width: 40px;
-            height: 40px;
-            background: url('https://raw.githubusercontent.com/osj-sgpr/sgpr-web/main/images/vaca.png') no-repeat center;
+            width: 45px;
+            height: 45px;
+            background: url('https://github.com/osj-sgpr/sgpr-web/blob/main/images/vaca.png') no-repeat center;
             background-size: cover;
             border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
         }
 
         .header-title h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin: 0;
+            font-weight: 700;
         }
 
         .header-title p {
@@ -250,64 +265,110 @@
             background: rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.3);
             color: white;
-            padding: 8px 15px;
+            padding: 10px 18px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .logout-btn:hover {
             background: rgba(255,255,255,0.3);
         }
 
+        /* ===== NAVEGAÇÃO ===== */
+        .nav-tabs {
+            background: white;
+            border-bottom: 2px solid #e9ecef;
+            padding: 0 30px;
+            overflow-x: auto;
+        }
+
+        .nav-tabs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .nav-tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tab:hover {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .nav-tab.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .nav-tab i {
+            font-size: 1.1rem;
+        }
+
+        /* ===== CONTEÚDO PRINCIPAL ===== */
         .main-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 30px;
         }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===== CARDS E COMPONENTES ===== */
+        .page-header {
             margin-bottom: 30px;
         }
 
-        .dashboard-card {
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .card {
             background: white;
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
         }
 
         .card-header {
             display: flex;
+            justify-content: between;
             align-items: center;
-            gap: 15px;
             margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f8f9fa;
         }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .card-icon.animals { background: #4CAF50; }
-        .card-icon.financial { background: #2196F3; }
-        .card-icon.reports { background: #FF9800; }
-        .card-icon.alerts { background: #E91E63; }
 
         .card-title {
             font-size: 1.3rem;
@@ -316,94 +377,8 @@
             margin: 0;
         }
 
-        .card-content {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #4CAF50;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .alerts-container {
-            margin-top: 20px;
-        }
-
-        .alert-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            border-left: 4px solid;
-        }
-
-        .alert-item.warning {
-            background: #fff3cd;
-            border-left-color: #ffc107;
-        }
-
-        .alert-item.info {
-            background: #d1ecf1;
-            border-left-color: #17a2b8;
-        }
-
-        .alert-item.success {
-            background: #d4edda;
-            border-left-color: #28a745;
-        }
-
-        .alert-icon {
-            font-size: 1.2rem;
-            width: 30px;
-            text-align: center;
-        }
-
-        .alert-content h4 {
-            margin: 0 0 5px 0;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .alert-content p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
         .btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -413,7 +388,7 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .btn-primary {
@@ -424,6 +399,7 @@
         .btn-primary:hover {
             background: #45a049;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
         }
 
         .btn-secondary {
@@ -447,7 +423,259 @@
             color: white;
         }
 
-        /* ===== LOADING E NOTIFICAÇÕES ===== */
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* ===== FORMULÁRIOS ===== */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ===== TABELAS ===== */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .table th {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== ESTATÍSTICAS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .stat-icon.animals { background: #4CAF50; }
+        .stat-icon.financial { background: #2196F3; }
+        .stat-icon.reproduction { background: #E91E63; }
+        .stat-icon.health { background: #9C27B0; }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* ===== MODAIS ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            padding: 5px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #f8f9fa;
+        }
+
+        /* ===== ALERTAS ===== */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        /* ===== LOADING ===== */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -458,7 +686,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
+            z-index: 10001;
             backdrop-filter: blur(5px);
         }
 
@@ -487,6 +715,7 @@
             display: none !important;
         }
 
+        /* ===== NOTIFICAÇÕES ===== */
         .notification {
             position: fixed;
             top: 20px;
@@ -495,7 +724,7 @@
             border-radius: 10px;
             color: white;
             font-weight: 600;
-            z-index: 10001;
+            z-index: 10002;
             animation: slideIn 0.3s ease;
             max-width: 400px;
         }
@@ -531,6 +760,11 @@
                 font-size: 2.5rem;
             }
 
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
             .login-form-container {
                 padding: 30px 25px;
             }
@@ -550,21 +784,36 @@
                 padding: 20px 15px;
             }
 
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .nav-tabs {
+                padding: 0 15px;
+            }
+
+            .nav-tab {
+                padding: 12px 15px;
+                font-size: 0.9rem;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
 
-            .action-buttons {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+                margin: 10px;
+            }
+
+            .modal-footer {
                 flex-direction: column;
             }
 
-            .btn {
-                justify-content: center;
+            .table-container {
+                font-size: 0.85rem;
             }
         }
 
@@ -577,251 +826,792 @@
                 padding: 25px 20px;
             }
 
-            .dashboard-card {
+            .card {
                 padding: 20px;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+
+            .nav-tabs-container {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Container Principal -->
-    <div class="main-container">
-        <!-- Tela de Login -->
-        <div id="loginScreen" class="login-container">
-            <div class="login-header">
-                <div class="logo-container">
-                    <div class="logo-image"></div>
-                    <div class="logo-text">
-                        <h1>SGPR</h1>
-                        <p class="tagline">Sistema de Gestão de Propriedades Rurais</p>
-                    </div>
+    <!-- Tela de Login -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-header">
+            <div class="logo-container">
+                <div class="logo-image"></div>
+                <div class="logo-text">
+                    <h1>SGPR</h1>
+                    <p class="tagline">Sistema de Gestão de Propriedades Rurais</p>
                 </div>
             </div>
             
-            <div class="login-form-container">
-                <h2>Acesso ao Sistema</h2>
-                
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="email">
-                            <i class="fas fa-envelope"></i>
-                            Email
-                        </label>
-                        <input type="email" id="email" required placeholder="seu@email.com">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cow"></i>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="password">
-                            <i class="fas fa-lock"></i>
-                            Senha
-                        </label>
-                        <input type="password" id="password" required placeholder="Sua senha">
-                    </div>
-                    
-                    <button type="submit" class="login-btn" id="loginBtn">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Entrar no Sistema
-                    </button>
-                </form>
+                    <div class="feature-title">Gestão de Animais</div>
+                    <div class="feature-desc">Controle completo do seu rebanho</div>
+                </div>
                 
-                <div class="login-footer">
-                    <p>Problemas para acessar?</p>
-                    <a href="#" onclick="showSupport()">Entre em contato</a>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="feature-title">Relatórios Zootécnicos</div>
+                    <div class="feature-desc">Análises detalhadas e estatísticas</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="feature-title">Controle Financeiro</div>
+                    <div class="feature-desc">Gestão de receitas e despesas</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="feature-title">Fichas de Campo</div>
+                    <div class="feature-desc">PDFs para uso no campo</div>
                 </div>
             </div>
         </div>
         
-        <!-- Sistema Principal -->
-        <div id="systemScreen" class="system-container">
-            <!-- Header -->
-            <header class="header">
-                <div class="header-content">
-                    <div class="header-left">
-                        <div class="header-logo"></div>
-                        <div class="header-title">
-                            <h1>SGPR</h1>
-                            <p>Sistema de Gestão de Propriedades Rurais</p>
-                        </div>
+        <div class="login-form-container">
+            <h2>Acesso ao Sistema</h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </label>
+                    <input type="email" id="email" required placeholder="seu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        Senha
+                    </label>
+                    <input type="password" id="password" required placeholder="Sua senha">
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar no Sistema
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Sistema Principal -->
+    <div id="systemScreen" class="system-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="header-logo"></div>
+                    <div class="header-title">
+                        <h1>SGPR</h1>
+                        <p>Sistema de Gestão de Propriedades Rurais</p>
                     </div>
-                    <div class="header-right">
-                        <div class="user-info">
-                            <div class="user-name" id="userName">Usuário</div>
-                            <div class="property-name" id="propertyName">Propriedade</div>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Usuário</div>
+                        <div class="property-name" id="propertyName">Propriedade</div>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Navegação -->
+        <nav class="nav-tabs">
+            <div class="nav-tabs-container">
+                <button class="nav-tab active" onclick="showTab('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </button>
+                <button class="nav-tab" onclick="showTab('animals')">
+                    <i class="fas fa-cow"></i>
+                    Animais
+                </button>
+                <button class="nav-tab" onclick="showTab('financial')">
+                    <i class="fas fa-dollar-sign"></i>
+                    Financeiro
+                </button>
+                <button class="nav-tab" onclick="showTab('reproduction')">
+                    <i class="fas fa-heart"></i>
+                    Reprodução
+                </button>
+                <button class="nav-tab" onclick="showTab('health')">
+                    <i class="fas fa-syringe"></i>
+                    Sanidade
+                </button>
+                <button class="nav-tab" onclick="showTab('reports')">
+                    <i class="fas fa-file-pdf"></i>
+                    Relatórios
+                </button>
+                <button class="nav-tab" onclick="showTab('goals')">
+                    <i class="fas fa-target"></i>
+                    Metas
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Dashboard -->
+            <div id="dashboardTab" class="tab-content active">
+                <div class="page-header">
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-subtitle">Visão geral da sua propriedade rural</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon animals">
+                            <i class="fas fa-cow"></i>
                         </div>
-                        <button class="logout-btn" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Sair
+                        <div class="stat-number" id="totalAnimals">0</div>
+                        <div class="stat-label">Total de Animais</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon financial">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-number" id="monthlyBalance">R$ 0</div>
+                        <div class="stat-label">Saldo do Mês</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon reproduction">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-number" id="pregnantAnimals">0</div>
+                        <div class="stat-label">Fêmeas Gestantes</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon health">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <div class="stat-number" id="pendingVaccines">0</div>
+                        <div class="stat-label">Vacinas Pendentes</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Ações Rápidas</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <button class="btn btn-primary" onclick="showTab('animals'); openAnimalModal()">
+                            <i class="fas fa-plus"></i>
+                            Novo Animal
+                        </button>
+                        <button class="btn btn-primary" onclick="showTab('financial'); openTransactionModal()">
+                            <i class="fas fa-plus"></i>
+                            Nova Transação
+                        </button>
+                        <button class="btn btn-outline" onclick="generateFieldForm('Pesagem')">
+                            <i class="fas fa-weight"></i>
+                            Ficha Pesagem
+                        </button>
+                        <button class="btn btn-outline" onclick="generateFieldForm('Inseminacao')">
+                            <i class="fas fa-syringe"></i>
+                            Ficha Inseminação
                         </button>
                     </div>
                 </div>
-            </header>
+            </div>
             
-            <!-- Conteúdo Principal -->
-            <main class="main-content">
-                <div class="dashboard-grid">
-                    <!-- Card de Animais -->
-                    <div class="dashboard-card">
+            <!-- Animais -->
+            <div id="animalsTab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Gestão de Animais</h1>
+                    <p class="page-subtitle">Controle completo do seu rebanho</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Animais Cadastrados</h3>
+                        <button class="btn btn-primary" onclick="openAnimalModal()">
+                            <i class="fas fa-plus"></i>
+                            Novo Animal
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table" id="animalsTable">
+                            <thead>
+                                <tr>
+                                    <th>Número</th>
+                                    <th>Nome</th>
+                                    <th>Sexo</th>
+                                    <th>Raça</th>
+                                    <th>Nascimento</th>
+                                    <th>Peso Atual</th>
+                                    <th>GMD</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="animalsTableBody">
+                                <tr>
+                                    <td colspan="8" style="text-align: center; padding: 40px; color: #666;">
+                                        Nenhum animal cadastrado
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Financeiro -->
+            <div id="financialTab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Controle Financeiro</h1>
+                    <p class="page-subtitle">Gestão de receitas e despesas</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Transações</h3>
+                        <button class="btn btn-primary" onclick="openTransactionModal()">
+                            <i class="fas fa-plus"></i>
+                            Nova Transação
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table" id="financialTable">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Categoria</th>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="financialTableBody">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                                        Nenhuma transação cadastrada
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reprodução -->
+            <div id="reproductionTab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Controle Reprodutivo</h1>
+                    <p class="page-subtitle">Gestão de inseminação e gestação</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Eventos Reprodutivos</h3>
+                        <button class="btn btn-primary" onclick="openReproductionModal()">
+                            <i class="fas fa-plus"></i>
+                            Novo Evento
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table" id="reproductionTable">
+                            <thead>
+                                <tr>
+                                    <th>Animal</th>
+                                    <th>Evento</th>
+                                    <th>Data</th>
+                                    <th>Previsão Parto</th>
+                                    <th>Observações</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reproductionTableBody">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                                        Nenhum evento cadastrado
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sanidade -->
+            <div id="healthTab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Controle Sanitário</h1>
+                    <p class="page-subtitle">Vacinas e vermífugos</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Controle de Vacinas</h3>
+                        <button class="btn btn-primary" onclick="openVaccineModal()">
+                            <i class="fas fa-plus"></i>
+                            Nova Vacinação
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table" id="vaccinesTable">
+                            <thead>
+                                <tr>
+                                    <th>Animal</th>
+                                    <th>Vacina</th>
+                                    <th>Data Aplicação</th>
+                                    <th>Próxima Data</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vaccinesTableBody">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                                        Nenhuma vacinação cadastrada
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Relatórios -->
+            <div id="reportsTab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Relatórios e Fichas</h1>
+                    <p class="page-subtitle">Documentos e análises</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                    <div class="card">
                         <div class="card-header">
-                            <div class="card-icon animals">
+                            <h3 class="card-title">Fichas de Campo</h3>
+                        </div>
+                        <div style="display: grid; gap: 15px;">
+                            <button class="btn btn-primary" onclick="generateFieldForm('Pesagem')">
+                                <i class="fas fa-weight"></i>
+                                Ficha de Pesagem
+                            </button>
+                            <button class="btn btn-primary" onclick="generateFieldForm('Inseminacao')">
+                                <i class="fas fa-syringe"></i>
+                                Ficha de Inseminação
+                            </button>
+                            <button class="btn btn-primary" onclick="generateFieldForm('Gestacao')">
+                                <i class="fas fa-baby"></i>
+                                Ficha de Gestação
+                            </button>
+                            <button class="btn btn-primary" onclick="generateFieldForm('Cadastro')">
+                                <i class="fas fa-clipboard"></i>
+                                Ficha de Cadastro
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Relatórios Zootécnicos</h3>
+                        </div>
+                        <div style="display: grid; gap: 15px;">
+                            <button class="btn btn-outline" onclick="generateReport('animals')">
                                 <i class="fas fa-cow"></i>
-                            </div>
-                            <h3 class="card-title">Gestão de Animais</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Controle completo do seu rebanho com informações detalhadas de cada animal.</p>
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number" id="totalAnimals">0</div>
-                                    <div class="stat-label">Total</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number" id="maleAnimals">0</div>
-                                    <div class="stat-label">Machos</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number" id="femaleAnimals">0</div>
-                                    <div class="stat-label">Fêmeas</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number" id="averageWeight">0</div>
-                                    <div class="stat-label">Peso Médio</div>
-                                </div>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary" onclick="openAnimalsModule()">
-                                    <i class="fas fa-plus"></i>
-                                    Novo Animal
-                                </button>
-                                <button class="btn btn-outline" onclick="viewAnimalsReport()">
-                                    <i class="fas fa-list"></i>
-                                    Ver Todos
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Card Financeiro -->
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-icon financial">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <h3 class="card-title">Controle Financeiro</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Gestão completa de receitas e despesas com 22 categorias organizadas.</p>
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number" id="totalRevenue">R$ 0</div>
-                                    <div class="stat-label">Receitas</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number" id="totalExpenses">R$ 0</div>
-                                    <div class="stat-label">Despesas</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number" id="balance">R$ 0</div>
-                                    <div class="stat-label">Saldo</div>
-                                </div>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary" onclick="openFinancialModule()">
-                                    <i class="fas fa-plus"></i>
-                                    Nova Transação
-                                </button>
-                                <button class="btn btn-outline" onclick="viewFinancialReport()">
-                                    <i class="fas fa-chart-line"></i>
-                                    Relatórios
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Card de Relatórios -->
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-icon reports">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <h3 class="card-title">Relatórios e Fichas</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>Fichas de campo em PDF e relatórios zootécnicos com cálculos automáticos.</p>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary" onclick="generateFieldForm('Pesagem')">
-                                    <i class="fas fa-weight"></i>
-                                    Ficha Pesagem
-                                </button>
-                                <button class="btn btn-primary" onclick="generateFieldForm('Inseminacao')">
-                                    <i class="fas fa-syringe"></i>
-                                    Ficha Inseminação
-                                </button>
-                                <button class="btn btn-outline" onclick="viewReports()">
-                                    <i class="fas fa-chart-bar"></i>
-                                    Ver Relatórios
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Card de Alertas -->
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-icon alerts">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                            <h3 class="card-title">Alertas e Lembretes</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="alerts-container" id="alertsContainer">
-                                <div class="alert-item warning">
-                                    <div class="alert-icon">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    <div class="alert-content">
-                                        <h4>Vacinação pendente</h4>
-                                        <p>5 animais precisam de vacinação esta semana</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="alert-item info">
-                                    <div class="alert-icon">
-                                        <i class="fas fa-baby"></i>
-                                    </div>
-                                    <div class="alert-content">
-                                        <h4>Partos previstos</h4>
-                                        <p>3 fêmeas com parto previsto para este mês</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="alert-item success">
-                                    <div class="alert-icon">
-                                        <i class="fas fa-trophy"></i>
-                                    </div>
-                                    <div class="alert-content">
-                                        <h4>Meta atingida</h4>
-                                        <p>GMD médio do mês superou a meta de 1,2 kg/dia</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="btn btn-outline" onclick="manageVaccinations()">
-                                    <i class="fas fa-calendar-check"></i>
-                                    Gerenciar Vacinas
-                                </button>
-                                <button class="btn btn-outline" onclick="manageGoals()">
-                                    <i class="fas fa-target"></i>
-                                    Gerenciar Metas
-                                </button>
-                            </div>
+                                Relatório de Animais
+                            </button>
+                            <button class="btn btn-outline" onclick="generateReport('financial')">
+                                <i class="fas fa-chart-line"></i>
+                                Relatório Financeiro
+                            </button>
+                            <button class="btn btn-outline" onclick="generateReport('reproduction')">
+                                <i class="fas fa-heart"></i>
+                                Relatório Reprodutivo
+                            </button>
+                            <button class="btn btn-outline" onclick="generateReport('performance')">
+                                <i class="fas fa-chart-bar"></i>
+                                Relatório de Performance
+                            </button>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+            
+            <!-- Metas -->
+            <div id="goalsTab" class="tab-content">
+                <div class="page-header">
+                    <h1 class="page-title">Metas e Objetivos</h1>
+                    <p class="page-subtitle">Defina e acompanhe suas metas</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Metas Cadastradas</h3>
+                        <button class="btn btn-primary" onclick="openGoalModal()">
+                            <i class="fas fa-plus"></i>
+                            Nova Meta
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table" id="goalsTable">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Descrição</th>
+                                    <th>Meta</th>
+                                    <th>Atual</th>
+                                    <th>Progresso</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="goalsTableBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: 40px; color: #666;">
+                                        Nenhuma meta cadastrada
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal Animal -->
+    <div id="animalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastro de Animal</h3>
+                <button class="modal-close" onclick="closeModal('animalModal')">&times;</button>
+            </div>
+            
+            <form id="animalForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animalNumber">Número *</label>
+                        <input type="text" id="animalNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="animalName">Nome *</label>
+                        <input type="text" id="animalName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animalSex">Sexo *</label>
+                        <select id="animalSex" required>
+                            <option value="">Selecione</option>
+                            <option value="M">Macho</option>
+                            <option value="F">Fêmea</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="animalBreed">Raça</label>
+                        <input type="text" id="animalBreed">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animalBirthDate">Data de Nascimento</label>
+                        <input type="date" id="animalBirthDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="animalBirthWeight">Peso ao Nascer (kg)</label>
+                        <input type="number" id="animalBirthWeight" step="0.1">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animalCurrentWeight">Peso Atual (kg)</label>
+                        <input type="number" id="animalCurrentWeight" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="animalLot">Lote</label>
+                        <input type="text" id="animalLot">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animalMother">Mãe</label>
+                        <input type="text" id="animalMother">
+                    </div>
+                    <div class="form-group">
+                        <label for="animalFather">Pai</label>
+                        <input type="text" id="animalFather">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="animalObservations">Observações</label>
+                    <textarea id="animalObservations"></textarea>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('animalModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Animal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Transação -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Nova Transação</h3>
+                <button class="modal-close" onclick="closeModal('transactionModal')">&times;</button>
+            </div>
+            
+            <form id="transactionForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="transactionDate">Data *</label>
+                        <input type="date" id="transactionDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionType">Tipo *</label>
+                        <select id="transactionType" required onchange="updateCategories()">
+                            <option value="">Selecione</option>
+                            <option value="Receita">Receita</option>
+                            <option value="Despesa">Despesa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="transactionCategory">Categoria *</label>
+                        <select id="transactionCategory" required>
+                            <option value="">Selecione o tipo primeiro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionValue">Valor *</label>
+                        <input type="number" id="transactionValue" step="0.01" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionDescription">Descrição *</label>
+                    <input type="text" id="transactionDescription" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionPayment">Forma de Pagamento</label>
+                    <select id="transactionPayment">
+                        <option value="">Selecione</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="PIX">PIX</option>
+                        <option value="Cartão Débito">Cartão Débito</option>
+                        <option value="Cartão Crédito">Cartão Crédito</option>
+                        <option value="Transferência">Transferência</option>
+                        <option value="Cheque">Cheque</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionObservations">Observações</label>
+                    <textarea id="transactionObservations"></textarea>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('transactionModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Transação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Reprodução -->
+    <div id="reproductionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Evento Reprodutivo</h3>
+                <button class="modal-close" onclick="closeModal('reproductionModal')">&times;</button>
+            </div>
+            
+            <form id="reproductionForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reproductionAnimal">Animal *</label>
+                        <select id="reproductionAnimal" required>
+                            <option value="">Selecione o animal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reproductionEvent">Evento *</label>
+                        <select id="reproductionEvent" required>
+                            <option value="">Selecione</option>
+                            <option value="Inseminação">Inseminação</option>
+                            <option value="Monta Natural">Monta Natural</option>
+                            <option value="Diagnóstico Gestação">Diagnóstico Gestação</option>
+                            <option value="Parto">Parto</option>
+                            <option value="Aborto">Aborto</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reproductionDate">Data do Evento *</label>
+                        <input type="date" id="reproductionDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reproductionBirthDate">Previsão de Parto</label>
+                        <input type="date" id="reproductionBirthDate">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reproductionObservations">Observações</label>
+                    <textarea id="reproductionObservations"></textarea>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('reproductionModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Evento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Vacina -->
+    <div id="vaccineModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Controle de Vacina</h3>
+                <button class="modal-close" onclick="closeModal('vaccineModal')">&times;</button>
+            </div>
+            
+            <form id="vaccineForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vaccineAnimal">Animal *</label>
+                        <select id="vaccineAnimal" required>
+                            <option value="">Selecione o animal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vaccineType">Vacina *</label>
+                        <select id="vaccineType" required>
+                            <option value="">Selecione</option>
+                            <option value="Febre Aftosa">Febre Aftosa</option>
+                            <option value="Brucelose">Brucelose</option>
+                            <option value="Raiva">Raiva</option>
+                            <option value="Clostridiose">Clostridiose</option>
+                            <option value="Vermifigo">Vermifugo</option>
+                            <option value="Leptospirose">Leptospirose</option>
+                            <option value="Carbúnculo">Carbúnculo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vaccineDate">Data da Aplicação *</label>
+                        <input type="date" id="vaccineDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vaccineNextDate">Próxima Aplicação</label>
+                        <input type="date" id="vaccineNextDate">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vaccineObservations">Observações</label>
+                    <textarea id="vaccineObservations"></textarea>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('vaccineModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Vacinação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Meta -->
+    <div id="goalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Nova Meta</h3>
+                <button class="modal-close" onclick="closeModal('goalModal')">&times;</button>
+            </div>
+            
+            <form id="goalForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="goalType">Tipo de Meta *</label>
+                        <select id="goalType" required>
+                            <option value="">Selecione</option>
+                            <option value="GMD">Ganho Médio Diário</option>
+                            <option value="Taxa Prenhez">Taxa de Prenhez</option>
+                            <option value="Peso Médio">Peso Médio</option>
+                            <option value="Receita">Receita Mensal</option>
+                            <option value="Lucro">Lucro Mensal</option>
+                            <option value="Vacinação">Cobertura Vacinal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goalValue">Valor da Meta *</label>
+                        <input type="number" id="goalValue" step="0.01" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="goalStartDate">Data Início</label>
+                        <input type="date" id="goalStartDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="goalEndDate">Data Fim</label>
+                        <input type="date" id="goalEndDate">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="goalDescription">Descrição *</label>
+                    <input type="text" id="goalDescription" required>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('goalModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Meta</button>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -829,17 +1619,16 @@
     <div id="loadingOverlay" class="loading-overlay hidden">
         <div class="loading-spinner">
             <i class="fas fa-cow fa-spin"></i>
-            <p>Carregando sistema...</p>
+            <p>Carregando...</p>
         </div>
     </div>
     
-    <!-- Scripts -->
     <script>
         // ==================== CONFIGURAÇÃO ====================
         const SGPR_CONFIG = {
             API_URL: 'https://script.google.com/macros/s/AKfycbxkC2-X5jWFx2mfNn6-eGag0M9uy-k5gq6x35AVHeTZ1ylFPOu_0ddGphh6UpZ3gb57/exec',
             SYSTEM_NAME: 'SGPR - Sistema de Gestão de Propriedades Rurais',
-            VERSION: '1.0.0'
+            VERSION: '2.0.0'
         };
 
         // ==================== VARIÁVEIS GLOBAIS ====================
@@ -847,7 +1636,39 @@
         let systemData = {
             animals: [],
             financial: [],
-            alerts: []
+            reproduction: [],
+            vaccines: [],
+            goals: []
+        };
+
+        // Categorias financeiras completas (22 categorias)
+        const FINANCIAL_CATEGORIES = {
+            'Receita': [
+                '01 - Venda de Animais',
+                '02 - Venda de Leite',
+                '03 - Venda de Produtos Derivados',
+                '04 - Prestação de Serviços',
+                '05 - Aluguel de Pastos',
+                '06 - Outras Receitas'
+            ],
+            'Despesa': [
+                '07 - Alimentação Animal',
+                '08 - Medicamentos e Vacinas',
+                '09 - Reprodução',
+                '10 - Mão de Obra',
+                '11 - Combustível',
+                '12 - Energia Elétrica',
+                '13 - Manutenção de Equipamentos',
+                '14 - Manutenção de Instalações',
+                '15 - Impostos e Taxas',
+                '16 - Seguros',
+                '17 - Transporte',
+                '18 - Consultoria Técnica',
+                '19 - Análises Laboratoriais',
+                '20 - Material de Escritório',
+                '21 - Despesas Bancárias',
+                '22 - Outras Despesas'
+            ]
         };
 
         // ==================== INICIALIZAÇÃO ====================
@@ -860,19 +1681,25 @@
                 try {
                     currentUser = JSON.parse(savedUser);
                     showSystem();
-                    loadDashboardData();
+                    loadAllData();
                 } catch (error) {
                     console.error('Erro ao carregar sessão:', error);
                     localStorage.removeItem('sgpr_user');
                 }
             }
             
-            // Configurar formulário de login
-            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            // Configurar formulários
+            setupForms();
+            
+            // Configurar data atual nos campos de data
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('transactionDate').value = today;
+            document.getElementById('reproductionDate').value = today;
+            document.getElementById('vaccineDate').value = today;
         });
 
         // ==================== AUTENTICAÇÃO ====================
-        async function handleLogin(event) {
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             
             const email = document.getElementById('email').value.trim();
@@ -897,7 +1724,7 @@
                     
                     showNotification('Login realizado com sucesso!', 'success');
                     showSystem();
-                    loadDashboardData();
+                    loadAllData();
                 } else {
                     showNotification(response.message || 'Erro no login', 'error');
                 }
@@ -907,7 +1734,7 @@
             } finally {
                 hideLoading();
             }
-        }
+        });
 
         function logout() {
             currentUser = null;
@@ -930,6 +1757,29 @@
             if (currentUser) {
                 document.getElementById('userName').textContent = currentUser.name;
                 document.getElementById('propertyName').textContent = currentUser.propertyName;
+            }
+        }
+
+        function showTab(tabName) {
+            // Remover classe active de todas as abas
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Ativar aba selecionada
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Carregar dados específicos da aba se necessário
+            if (tabName === 'animals') {
+                loadAnimalsTable();
+            } else if (tabName === 'financial') {
+                loadFinancialTable();
+            } else if (tabName === 'reproduction') {
+                loadReproductionTable();
+            } else if (tabName === 'health') {
+                loadVaccinesTable();
+            } else if (tabName === 'goals') {
+                loadGoalsTable();
             }
         }
 
@@ -962,24 +1812,25 @@
         }
 
         // ==================== CARREGAMENTO DE DADOS ====================
-        async function loadDashboardData() {
+        async function loadAllData() {
             if (!currentUser || !currentUser.propertySpreadsheetId) {
                 console.error('Usuário ou planilha não encontrados');
                 return;
             }
             
             try {
-                // Carregar dados dos animais
-                await loadAnimalsData();
+                await Promise.all([
+                    loadAnimalsData(),
+                    loadFinancialData(),
+                    loadReproductionData(),
+                    loadVaccinesData(),
+                    loadGoalsData()
+                ]);
                 
-                // Carregar dados financeiros
-                await loadFinancialData();
-                
-                // Carregar alertas
-                await loadAlertsData();
+                updateDashboardStats();
                 
             } catch (error) {
-                console.error('Erro ao carregar dados do dashboard:', error);
+                console.error('Erro ao carregar dados:', error);
                 showNotification('Erro ao carregar dados do sistema', 'error');
             }
         }
@@ -992,7 +1843,7 @@
                 
                 if (response.success) {
                     systemData.animals = response.data || [];
-                    updateAnimalsStats();
+                    updateAnimalSelects();
                 }
             } catch (error) {
                 console.error('Erro ao carregar animais:', error);
@@ -1007,132 +1858,657 @@
                 
                 if (response.success) {
                     systemData.financial = response.data || [];
-                    updateFinancialStats();
                 }
             } catch (error) {
                 console.error('Erro ao carregar dados financeiros:', error);
             }
         }
 
-        async function loadAlertsData() {
+        async function loadReproductionData() {
             try {
-                const response = await makeRequest('getAlerts', {
+                const response = await makeRequest('getReproduction', {
                     propertySpreadsheetId: currentUser.propertySpreadsheetId
                 });
                 
                 if (response.success) {
-                    systemData.alerts = response.data || [];
-                    updateAlertsDisplay();
+                    systemData.reproduction = response.data || [];
                 }
             } catch (error) {
-                console.error('Erro ao carregar alertas:', error);
+                console.error('Erro ao carregar dados reprodutivos:', error);
+            }
+        }
+
+        async function loadVaccinesData() {
+            try {
+                const response = await makeRequest('getVaccines', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    systemData.vaccines = response.data || [];
+                }
+            } catch (error) {
+                console.error('Erro ao carregar dados de vacinas:', error);
+            }
+        }
+
+        async function loadGoalsData() {
+            try {
+                const response = await makeRequest('getGoals', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    systemData.goals = response.data || [];
+                }
+            } catch (error) {
+                console.error('Erro ao carregar metas:', error);
             }
         }
 
         // ==================== ATUALIZAÇÃO DE ESTATÍSTICAS ====================
-        function updateAnimalsStats() {
-            const animals = systemData.animals;
+        function updateDashboardStats() {
+            // Total de animais
+            document.getElementById('totalAnimals').textContent = systemData.animals.length;
             
-            let totalAnimals = animals.length;
-            let maleCount = 0;
-            let femaleCount = 0;
-            let totalWeight = 0;
-            let animalsWithWeight = 0;
+            // Saldo mensal
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            let monthlyBalance = 0;
             
-            animals.forEach(animal => {
-                if (animal.sexo === 'M' || animal.sexo === 'Macho') {
-                    maleCount++;
-                } else if (animal.sexo === 'F' || animal.sexo === 'Fêmea') {
-                    femaleCount++;
+            systemData.financial.forEach(transaction => {
+                const transactionDate = new Date(transaction.data);
+                if (transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear) {
+                    const value = parseFloat(transaction.valor) || 0;
+                    if (transaction.tipo === 'Receita') {
+                        monthlyBalance += value;
+                    } else {
+                        monthlyBalance -= value;
+                    }
                 }
+            });
+            
+            document.getElementById('monthlyBalance').textContent = formatCurrency(monthlyBalance);
+            
+            // Fêmeas gestantes
+            const pregnantAnimals = systemData.reproduction.filter(event => 
+                event.evento === 'Gestação Confirmada' || event.evento === 'Diagnóstico Gestação'
+            ).length;
+            document.getElementById('pregnantAnimals').textContent = pregnantAnimals;
+            
+            // Vacinas pendentes
+            const today = new Date();
+            const nextWeek = new Date();
+            nextWeek.setDate(today.getDate() + 7);
+            
+            const pendingVaccines = systemData.vaccines.filter(vaccine => {
+                if (vaccine.proximaData) {
+                    const nextDate = new Date(vaccine.proximaData);
+                    return nextDate <= nextWeek;
+                }
+                return false;
+            }).length;
+            
+            document.getElementById('pendingVaccines').textContent = pendingVaccines;
+        }
+
+        // ==================== MODAIS ====================
+        function openAnimalModal(animalId = null) {
+            document.getElementById('animalModal').classList.add('show');
+            
+            if (animalId) {
+                // Carregar dados do animal para edição
+                const animal = systemData.animals.find(a => a.id === animalId);
+                if (animal) {
+                    document.getElementById('animalNumber').value = animal.numero || '';
+                    document.getElementById('animalName').value = animal.nome || '';
+                    document.getElementById('animalSex').value = animal.sexo || '';
+                    document.getElementById('animalBreed').value = animal.raca || '';
+                    document.getElementById('animalBirthDate').value = animal.dataNascimento || '';
+                    document.getElementById('animalBirthWeight').value = animal.pesoNascimento || '';
+                    document.getElementById('animalCurrentWeight').value = animal.pesoAtual || '';
+                    document.getElementById('animalLot').value = animal.lote || '';
+                    document.getElementById('animalMother').value = animal.mae || '';
+                    document.getElementById('animalFather').value = animal.pai || '';
+                    document.getElementById('animalObservations').value = animal.observacoes || '';
+                }
+            }
+        }
+
+        function openTransactionModal(transactionId = null) {
+            document.getElementById('transactionModal').classList.add('show');
+            
+            if (transactionId) {
+                // Carregar dados da transação para edição
+                const transaction = systemData.financial.find(t => t.id === transactionId);
+                if (transaction) {
+                    document.getElementById('transactionDate').value = transaction.data || '';
+                    document.getElementById('transactionType').value = transaction.tipo || '';
+                    updateCategories();
+                    document.getElementById('transactionCategory').value = transaction.categoria || '';
+                    document.getElementById('transactionValue').value = transaction.valor || '';
+                    document.getElementById('transactionDescription').value = transaction.descricao || '';
+                    document.getElementById('transactionPayment').value = transaction.formaPagamento || '';
+                    document.getElementById('transactionObservations').value = transaction.observacoes || '';
+                }
+            }
+        }
+
+        function openReproductionModal(eventId = null) {
+            document.getElementById('reproductionModal').classList.add('show');
+            
+            if (eventId) {
+                // Carregar dados do evento para edição
+                const event = systemData.reproduction.find(e => e.id === eventId);
+                if (event) {
+                    document.getElementById('reproductionAnimal').value = event.animalId || '';
+                    document.getElementById('reproductionEvent').value = event.evento || '';
+                    document.getElementById('reproductionDate').value = event.data || '';
+                    document.getElementById('reproductionBirthDate').value = event.previsaoParto || '';
+                    document.getElementById('reproductionObservations').value = event.observacoes || '';
+                }
+            }
+        }
+
+        function openVaccineModal(vaccineId = null) {
+            document.getElementById('vaccineModal').classList.add('show');
+            
+            if (vaccineId) {
+                // Carregar dados da vacina para edição
+                const vaccine = systemData.vaccines.find(v => v.id === vaccineId);
+                if (vaccine) {
+                    document.getElementById('vaccineAnimal').value = vaccine.animalId || '';
+                    document.getElementById('vaccineType').value = vaccine.vacina || '';
+                    document.getElementById('vaccineDate').value = vaccine.data || '';
+                    document.getElementById('vaccineNextDate').value = vaccine.proximaData || '';
+                    document.getElementById('vaccineObservations').value = vaccine.observacoes || '';
+                }
+            }
+        }
+
+        function openGoalModal(goalId = null) {
+            document.getElementById('goalModal').classList.add('show');
+            
+            if (goalId) {
+                // Carregar dados da meta para edição
+                const goal = systemData.goals.find(g => g.id === goalId);
+                if (goal) {
+                    document.getElementById('goalType').value = goal.tipo || '';
+                    document.getElementById('goalValue').value = goal.valorMeta || '';
+                    document.getElementById('goalStartDate').value = goal.dataInicio || '';
+                    document.getElementById('goalEndDate').value = goal.dataFim || '';
+                    document.getElementById('goalDescription').value = goal.descricao || '';
+                }
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            
+            // Limpar formulário
+            const form = document.querySelector(`#${modalId} form`);
+            if (form) {
+                form.reset();
+            }
+        }
+
+        // ==================== CONFIGURAÇÃO DE FORMULÁRIOS ====================
+        function setupForms() {
+            // Formulário de Animal
+            document.getElementById('animalForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                await saveAnimal();
+            });
+            
+            // Formulário de Transação
+            document.getElementById('transactionForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                await saveTransaction();
+            });
+            
+            // Formulário de Reprodução
+            document.getElementById('reproductionForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                await saveReproduction();
+            });
+            
+            // Formulário de Vacina
+            document.getElementById('vaccineForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                await saveVaccine();
+            });
+            
+            // Formulário de Meta
+            document.getElementById('goalForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                await saveGoal();
+            });
+        }
+
+        // ==================== SALVAR DADOS ====================
+        async function saveAnimal() {
+            const animalData = {
+                numero: document.getElementById('animalNumber').value,
+                nome: document.getElementById('animalName').value,
+                sexo: document.getElementById('animalSex').value,
+                raca: document.getElementById('animalBreed').value,
+                dataNascimento: document.getElementById('animalBirthDate').value,
+                pesoNascimento: document.getElementById('animalBirthWeight').value,
+                pesoAtual: document.getElementById('animalCurrentWeight').value,
+                lote: document.getElementById('animalLot').value,
+                mae: document.getElementById('animalMother').value,
+                pai: document.getElementById('animalFather').value,
+                observacoes: document.getElementById('animalObservations').value
+            };
+            
+            showLoading('Salvando animal...');
+            
+            try {
+                const response = await makeRequest('saveAnimal', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    animal: JSON.stringify(animalData)
+                });
                 
-                if (animal.pesoAtual && !isNaN(parseFloat(animal.pesoAtual))) {
-                    totalWeight += parseFloat(animal.pesoAtual);
-                    animalsWithWeight++;
+                if (response.success) {
+                    showNotification('Animal salvo com sucesso!', 'success');
+                    closeModal('animalModal');
+                    await loadAnimalsData();
+                    loadAnimalsTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao salvar animal', 'error');
                 }
-            });
-            
-            const averageWeight = animalsWithWeight > 0 ? (totalWeight / animalsWithWeight).toFixed(0) : 0;
-            
-            document.getElementById('totalAnimals').textContent = totalAnimals;
-            document.getElementById('maleAnimals').textContent = maleCount;
-            document.getElementById('femaleAnimals').textContent = femaleCount;
-            document.getElementById('averageWeight').textContent = averageWeight + ' kg';
+            } catch (error) {
+                console.error('Erro ao salvar animal:', error);
+                showNotification('Erro de conexão ao salvar animal', 'error');
+            } finally {
+                hideLoading();
+            }
         }
 
-        function updateFinancialStats() {
-            const transactions = systemData.financial;
+        async function saveTransaction() {
+            const transactionData = {
+                data: document.getElementById('transactionDate').value,
+                tipo: document.getElementById('transactionType').value,
+                categoria: document.getElementById('transactionCategory').value,
+                valor: document.getElementById('transactionValue').value,
+                descricao: document.getElementById('transactionDescription').value,
+                formaPagamento: document.getElementById('transactionPayment').value,
+                observacoes: document.getElementById('transactionObservations').value
+            };
             
-            let totalRevenue = 0;
-            let totalExpenses = 0;
+            showLoading('Salvando transação...');
             
-            transactions.forEach(transaction => {
-                const value = parseFloat(transaction.valor) || 0;
-                if (transaction.tipo === 'Receita') {
-                    totalRevenue += value;
-                } else if (transaction.tipo === 'Despesa') {
-                    totalExpenses += value;
+            try {
+                const response = await makeRequest('saveTransaction', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    transaction: JSON.stringify(transactionData)
+                });
+                
+                if (response.success) {
+                    showNotification('Transação salva com sucesso!', 'success');
+                    closeModal('transactionModal');
+                    await loadFinancialData();
+                    loadFinancialTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao salvar transação', 'error');
                 }
-            });
-            
-            const balance = totalRevenue - totalExpenses;
-            
-            document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
-            document.getElementById('totalExpenses').textContent = formatCurrency(totalExpenses);
-            document.getElementById('balance').textContent = formatCurrency(balance);
+            } catch (error) {
+                console.error('Erro ao salvar transação:', error);
+                showNotification('Erro de conexão ao salvar transação', 'error');
+            } finally {
+                hideLoading();
+            }
         }
 
-        function updateAlertsDisplay() {
-            const alertsContainer = document.getElementById('alertsContainer');
-            const alerts = systemData.alerts;
+        async function saveReproduction() {
+            const reproductionData = {
+                animalId: document.getElementById('reproductionAnimal').value,
+                evento: document.getElementById('reproductionEvent').value,
+                data: document.getElementById('reproductionDate').value,
+                previsaoParto: document.getElementById('reproductionBirthDate').value,
+                observacoes: document.getElementById('reproductionObservations').value
+            };
             
-            if (alerts.length === 0) {
-                alertsContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Nenhum alerta no momento</p>';
+            showLoading('Salvando evento reprodutivo...');
+            
+            try {
+                const response = await makeRequest('saveReproduction', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    reproduction: JSON.stringify(reproductionData)
+                });
+                
+                if (response.success) {
+                    showNotification('Evento reprodutivo salvo com sucesso!', 'success');
+                    closeModal('reproductionModal');
+                    await loadReproductionData();
+                    loadReproductionTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao salvar evento', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar evento reprodutivo:', error);
+                showNotification('Erro de conexão ao salvar evento', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function saveVaccine() {
+            const vaccineData = {
+                animalId: document.getElementById('vaccineAnimal').value,
+                vacina: document.getElementById('vaccineType').value,
+                data: document.getElementById('vaccineDate').value,
+                proximaData: document.getElementById('vaccineNextDate').value,
+                observacoes: document.getElementById('vaccineObservations').value
+            };
+            
+            showLoading('Salvando vacinação...');
+            
+            try {
+                const response = await makeRequest('saveVaccination', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    vaccination: JSON.stringify(vaccineData)
+                });
+                
+                if (response.success) {
+                    showNotification('Vacinação salva com sucesso!', 'success');
+                    closeModal('vaccineModal');
+                    await loadVaccinesData();
+                    loadVaccinesTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao salvar vacinação', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar vacinação:', error);
+                showNotification('Erro de conexão ao salvar vacinação', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function saveGoal() {
+            const goalData = {
+                tipo: document.getElementById('goalType').value,
+                valorMeta: document.getElementById('goalValue').value,
+                dataInicio: document.getElementById('goalStartDate').value,
+                dataFim: document.getElementById('goalEndDate').value,
+                descricao: document.getElementById('goalDescription').value,
+                valorAtual: 0,
+                status: 'Ativa'
+            };
+            
+            showLoading('Salvando meta...');
+            
+            try {
+                const response = await makeRequest('saveGoal', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    goal: JSON.stringify(goalData)
+                });
+                
+                if (response.success) {
+                    showNotification('Meta salva com sucesso!', 'success');
+                    closeModal('goalModal');
+                    await loadGoalsData();
+                    loadGoalsTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao salvar meta', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar meta:', error);
+                showNotification('Erro de conexão ao salvar meta', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // ==================== CARREGAMENTO DE TABELAS ====================
+        function loadAnimalsTable() {
+            const tbody = document.getElementById('animalsTableBody');
+            
+            if (systemData.animals.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px; color: #666;">Nenhum animal cadastrado</td></tr>';
                 return;
             }
             
-            alertsContainer.innerHTML = '';
+            tbody.innerHTML = '';
             
-            alerts.forEach(alert => {
-                const alertElement = document.createElement('div');
-                alertElement.className = `alert-item ${alert.type}`;
-                alertElement.innerHTML = `
-                    <div class="alert-icon">
-                        <i class="${alert.icon}"></i>
-                    </div>
-                    <div class="alert-content">
-                        <h4>${alert.title}</h4>
-                        <p>${alert.message}</p>
-                    </div>
+            systemData.animals.forEach(animal => {
+                // Calcular GMD se possível
+                let gmd = '-';
+                if (animal.pesoNascimento && animal.pesoAtual && animal.dataNascimento) {
+                    const birthDate = new Date(animal.dataNascimento);
+                    const currentDate = new Date();
+                    const ageInDays = Math.floor((currentDate - birthDate) / (1000 * 60 * 60 * 24));
+                    
+                    if (ageInDays > 0) {
+                        const weightGain = parseFloat(animal.pesoAtual) - parseFloat(animal.pesoNascimento);
+                        gmd = (weightGain / ageInDays).toFixed(3) + ' kg/dia';
+                    }
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${animal.numero || '-'}</td>
+                    <td>${animal.nome || '-'}</td>
+                    <td>${animal.sexo || '-'}</td>
+                    <td>${animal.raca || '-'}</td>
+                    <td>${animal.dataNascimento ? formatDate(animal.dataNascimento) : '-'}</td>
+                    <td>${animal.pesoAtual ? animal.pesoAtual + ' kg' : '-'}</td>
+                    <td>${gmd}</td>
+                    <td>
+                        <button class="btn btn-outline" onclick="openAnimalModal('${animal.id}')" style="padding: 5px 10px; margin-right: 5px;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteAnimal('${animal.id}')" style="padding: 5px 10px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
                 `;
-                alertsContainer.appendChild(alertElement);
+                tbody.appendChild(row);
             });
         }
 
-        // ==================== MÓDULOS DO SISTEMA ====================
-        function openAnimalsModule() {
-            showNotification('Módulo de animais em desenvolvimento', 'info');
-            // TODO: Implementar módulo de animais
+        function loadFinancialTable() {
+            const tbody = document.getElementById('financialTableBody');
+            
+            if (systemData.financial.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #666;">Nenhuma transação cadastrada</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            // Ordenar por data (mais recente primeiro)
+            const sortedTransactions = systemData.financial.sort((a, b) => new Date(b.data) - new Date(a.data));
+            
+            sortedTransactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${formatDate(transaction.data)}</td>
+                    <td><span class="badge ${transaction.tipo === 'Receita' ? 'badge-success' : 'badge-danger'}">${transaction.tipo}</span></td>
+                    <td>${transaction.categoria || '-'}</td>
+                    <td>${transaction.descricao || '-'}</td>
+                    <td style="color: ${transaction.tipo === 'Receita' ? '#28a745' : '#dc3545'}; font-weight: 600;">
+                        ${formatCurrency(parseFloat(transaction.valor) || 0)}
+                    </td>
+                    <td>
+                        <button class="btn btn-outline" onclick="openTransactionModal('${transaction.id}')" style="padding: 5px 10px; margin-right: 5px;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteTransaction('${transaction.id}')" style="padding: 5px 10px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function openFinancialModule() {
-            showNotification('Módulo financeiro em desenvolvimento', 'info');
-            // TODO: Implementar módulo financeiro
+        function loadReproductionTable() {
+            const tbody = document.getElementById('reproductionTableBody');
+            
+            if (systemData.reproduction.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #666;">Nenhum evento cadastrado</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            systemData.reproduction.forEach(event => {
+                const animal = systemData.animals.find(a => a.id === event.animalId);
+                const animalName = animal ? `${animal.numero} - ${animal.nome}` : 'Animal não encontrado';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${animalName}</td>
+                    <td>${event.evento || '-'}</td>
+                    <td>${formatDate(event.data)}</td>
+                    <td>${event.previsaoParto ? formatDate(event.previsaoParto) : '-'}</td>
+                    <td>${event.observacoes || '-'}</td>
+                    <td>
+                        <button class="btn btn-outline" onclick="openReproductionModal('${event.id}')" style="padding: 5px 10px; margin-right: 5px;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteReproduction('${event.id}')" style="padding: 5px 10px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function viewAnimalsReport() {
-            showNotification('Relatório de animais em desenvolvimento', 'info');
-            // TODO: Implementar relatório de animais
+        function loadVaccinesTable() {
+            const tbody = document.getElementById('vaccinesTableBody');
+            
+            if (systemData.vaccines.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #666;">Nenhuma vacinação cadastrada</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            systemData.vaccines.forEach(vaccine => {
+                const animal = systemData.animals.find(a => a.id === vaccine.animalId);
+                const animalName = animal ? `${animal.numero} - ${animal.nome}` : 'Animal não encontrado';
+                
+                // Verificar status da vacina
+                let status = 'Em dia';
+                let statusClass = 'badge-success';
+                
+                if (vaccine.proximaData) {
+                    const nextDate = new Date(vaccine.proximaData);
+                    const today = new Date();
+                    const daysUntilNext = Math.floor((nextDate - today) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysUntilNext < 0) {
+                        status = 'Atrasada';
+                        statusClass = 'badge-danger';
+                    } else if (daysUntilNext <= 7) {
+                        status = 'Próxima';
+                        statusClass = 'badge-warning';
+                    }
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${animalName}</td>
+                    <td>${vaccine.vacina || '-'}</td>
+                    <td>${formatDate(vaccine.data)}</td>
+                    <td>${vaccine.proximaData ? formatDate(vaccine.proximaData) : '-'}</td>
+                    <td><span class="badge ${statusClass}">${status}</span></td>
+                    <td>
+                        <button class="btn btn-outline" onclick="openVaccineModal('${vaccine.id}')" style="padding: 5px 10px; margin-right: 5px;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteVaccine('${vaccine.id}')" style="padding: 5px 10px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function viewFinancialReport() {
-            showNotification('Relatório financeiro em desenvolvimento', 'info');
-            // TODO: Implementar relatório financeiro
+        function loadGoalsTable() {
+            const tbody = document.getElementById('goalsTableBody');
+            
+            if (systemData.goals.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #666;">Nenhuma meta cadastrada</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            systemData.goals.forEach(goal => {
+                const progress = goal.valorMeta > 0 ? ((goal.valorAtual / goal.valorMeta) * 100).toFixed(1) : 0;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${goal.tipo || '-'}</td>
+                    <td>${goal.descricao || '-'}</td>
+                    <td>${goal.valorMeta || '-'}</td>
+                    <td>${goal.valorAtual || '0'}</td>
+                    <td>
+                        <div style="background: #e9ecef; border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div style="background: #4CAF50; height: 100%; width: ${Math.min(progress, 100)}%; transition: width 0.3s ease;"></div>
+                        </div>
+                        <small>${progress}%</small>
+                    </td>
+                    <td><span class="badge ${goal.status === 'Ativa' ? 'badge-success' : 'badge-secondary'}">${goal.status}</span></td>
+                    <td>
+                        <button class="btn btn-outline" onclick="openGoalModal('${goal.id}')" style="padding: 5px 10px; margin-right: 5px;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteGoal('${goal.id}')" style="padding: 5px 10px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function viewReports() {
-            showNotification('Módulo de relatórios em desenvolvimento', 'info');
-            // TODO: Implementar módulo de relatórios
+        // ==================== UTILITÁRIOS ====================
+        function updateCategories() {
+            const typeSelect = document.getElementById('transactionType');
+            const categorySelect = document.getElementById('transactionCategory');
+            
+            const selectedType = typeSelect.value;
+            
+            categorySelect.innerHTML = '<option value="">Selecione a categoria</option>';
+            
+            if (selectedType && FINANCIAL_CATEGORIES[selectedType]) {
+                FINANCIAL_CATEGORIES[selectedType].forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    categorySelect.appendChild(option);
+                });
+            }
+        }
+
+        function updateAnimalSelects() {
+            const selects = ['reproductionAnimal', 'vaccineAnimal'];
+            
+            selects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select) {
+                    select.innerHTML = '<option value="">Selecione o animal</option>';
+                    
+                    systemData.animals.forEach(animal => {
+                        const option = document.createElement('option');
+                        option.value = animal.id;
+                        option.textContent = `${animal.numero} - ${animal.nome}`;
+                        select.appendChild(option);
+                    });
+                }
+            });
         }
 
         async function generateFieldForm(formType) {
@@ -1167,17 +2543,36 @@
             }
         }
 
-        function manageVaccinations() {
-            showNotification('Módulo de vacinas em desenvolvimento', 'info');
-            // TODO: Implementar módulo de vacinas
+        async function generateReport(reportType) {
+            if (!currentUser || !currentUser.propertySpreadsheetId) {
+                showNotification('Erro: dados do usuário não encontrados', 'error');
+                return;
+            }
+            
+            showLoading(`Gerando relatório ${reportType}...`);
+            
+            try {
+                const response = await makeRequest('getReports', {
+                    reportType: reportType,
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId
+                });
+                
+                if (response.success) {
+                    showNotification(`Relatório ${reportType} gerado com sucesso!`, 'success');
+                    
+                    // Aqui você pode implementar a exibição do relatório
+                    console.log('Dados do relatório:', response.data);
+                } else {
+                    showNotification(response.message || 'Erro ao gerar relatório', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao gerar relatório:', error);
+                showNotification('Erro de conexão ao gerar relatório', 'error');
+            } finally {
+                hideLoading();
+            }
         }
 
-        function manageGoals() {
-            showNotification('Módulo de metas em desenvolvimento', 'info');
-            // TODO: Implementar módulo de metas
-        }
-
-        // ==================== UTILITÁRIOS ====================
         async function makeRequest(action, data = {}) {
             const formData = new FormData();
             formData.append('action', action);
@@ -1209,9 +2604,88 @@
             }).format(value);
         }
 
-        function showSupport() {
-            showNotification('Entre em contato: suporte@sgpr.com', 'info');
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR');
         }
+
+        // ==================== FUNÇÕES DE EXCLUSÃO ====================
+        async function deleteAnimal(animalId) {
+            if (!confirm('Tem certeza que deseja excluir este animal?')) {
+                return;
+            }
+            
+            showLoading('Excluindo animal...');
+            
+            try {
+                const response = await makeRequest('deleteAnimal', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    animalId: animalId
+                });
+                
+                if (response.success) {
+                    showNotification('Animal excluído com sucesso!', 'success');
+                    await loadAnimalsData();
+                    loadAnimalsTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao excluir animal', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir animal:', error);
+                showNotification('Erro de conexão ao excluir animal', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function deleteTransaction(transactionId) {
+            if (!confirm('Tem certeza que deseja excluir esta transação?')) {
+                return;
+            }
+            
+            showLoading('Excluindo transação...');
+            
+            try {
+                const response = await makeRequest('deleteTransaction', {
+                    propertySpreadsheetId: currentUser.propertySpreadsheetId,
+                    transactionId: transactionId
+                });
+                
+                if (response.success) {
+                    showNotification('Transação excluída com sucesso!', 'success');
+                    await loadFinancialData();
+                    loadFinancialTable();
+                    updateDashboardStats();
+                } else {
+                    showNotification(response.message || 'Erro ao excluir transação', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir transação:', error);
+                showNotification('Erro de conexão ao excluir transação', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Adicionar estilos para badges
+        const style = document.createElement('style');
+        style.textContent = `
+            .badge {
+                padding: 4px 8px;
+                border-radius: 12px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            .badge-success { background: #d4edda; color: #155724; }
+            .badge-danger { background: #f8d7da; color: #721c24; }
+            .badge-warning { background: #fff3cd; color: #856404; }
+            .badge-secondary { background: #e2e3e5; color: #383d41; }
+        `;
+        document.head.appendChild(style);
 
         // ==================== TRATAMENTO DE ERROS ====================
         window.addEventListener('error', function(event) {
