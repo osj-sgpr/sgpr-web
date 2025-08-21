@@ -1,96 +1,71 @@
-# 🐄 SGPR - Sistema de Gestão de Propriedades Rurais
+# SGPR - Sistema de Gestão de Propriedades Rurais
 
-Sistema web moderno para gestão completa de propriedades rurais.
-
-## 🌟 Características
-
-- **100% Web**: Acesse de qualquer dispositivo
-- **Gratuito**: Hospedagem no GitHub Pages
-- **Completo**: Animais, finanças e relatórios
-- **Seguro**: Dados no Google Sheets
-- **Responsivo**: Funciona em mobile e desktop
+Sistema web completo para gestão de propriedades rurais, desenvolvido com HTML, CSS, JavaScript e Google Apps Script.
 
 ## 🚀 Funcionalidades
 
 ### 🐄 Gestão de Animais
-- Cadastro completo do rebanho
+- Cadastro completo de animais
 - Controle de peso e GMD
 - Genealogia e histórico
 - Busca e filtros avançados
 
 ### 💰 Controle Financeiro
-- 22 categorias de despesas
-- Receitas detalhadas
+- 22 categorias organizadas
+- Receitas e despesas detalhadas
 - Relatórios financeiros
-- Análise de fluxo de caixa
+- Controle de saldos
+
+### 💕 Controle Reprodutivo
+- Inseminação artificial
+- Diagnóstico de gestação
+- Previsão de partos
+- Histórico reprodutivo
+
+### 💉 Controle Sanitário
+- Vacinações programadas
+- Alertas de vencimento
+- Calendário sanitário
+- Controle de vermifugações
 
 ### 📊 Relatórios e Fichas
-- Fichas de campo em PDF
+- Fichas PDF para campo
 - Relatórios zootécnicos
+- Análises de performance
 - Estatísticas do rebanho
-- Análises de reprodução
 
-## 📋 Pré-requisitos
+### 🎯 Sistema de Metas
+- Metas de GMD
+- Metas de taxa de prenhez
+- Metas financeiras
+- Acompanhamento de progresso
 
-- Conta Google (Gmail)
-- Conta GitHub (gratuita)
-- Navegador moderno
+## 🔧 Configuração
 
-## ⚙️ Configuração
-
-### 1. Configure o Google Apps Script
-1. Acesse [script.google.com](https://script.google.com)
-2. Crie novo projeto
-3. Cole o código de `docs/google-apps-script.js`
-4. Configure as variáveis CONFIG
-5. Publique como Web App
-
-### 2. Configure as Planilhas
-1. Crie planilha "SGPR_Master" no Google Sheets
-2. Adicione abas "Usuarios" e "Propriedades"
-3. Crie pasta "SGPR_Propriedades" no Google Drive
-
-### 3. Configure o Frontend
-1. Edite `js/config.js`
-2. Substitua `API_URL` pela URL do Google Apps Script
-3. Faça commit das alterações
-
-### 4. Ative GitHub Pages
-1. Vá em Settings → Pages
-2. Selecione branch "main"
-3. Aguarde deploy
-
-## 📖 Manual Completo
-
-Consulte o arquivo `MANUAL_INSTALACAO_LEIGO.md` para instruções detalhadas passo a passo.
-
-## 🔐 Segurança
-
-- Dados ficam nas suas planilhas Google
-- Autenticação via Google Apps Script
-- Sem informações sensíveis no código frontend
-- Controle de acesso por propriedade
+1. Configure o Google Apps Script com o código fornecido
+2. Atualize a URL da API no arquivo `index.html`
+3. Configure as planilhas do Google Sheets
+4. Publique no GitHub Pages
 
 ## 📱 Compatibilidade
 
-- ✅ Chrome, Firefox, Safari, Edge
-- ✅ Windows, Mac, Linux
-- ✅ Android, iOS
-- ✅ Tablets e smartphones
+- ✅ Desktop (Windows, Mac, Linux)
+- ✅ Mobile (iPhone, Android)
+- ✅ Tablet (iPad, Android)
+- ✅ Todos os navegadores modernos
 
-## 🆘 Suporte
+## 🔐 Segurança
 
-- **Email**: osjbeta@gmail.com
-- **WhatsApp**: (63) 99277-9893
-- **Documentação**: Consulte os arquivos .md
+- Autenticação por usuário
+- Dados criptografados
+- Acesso por propriedade
+- Backup automático no Google Drive
 
-## 📄 Licença
+## 📞 Suporte
 
-MIT License - Use livremente para fins comerciais e pessoais.
+Para suporte técnico, entre em contato com o administrador do sistema.
 
-## 🏆 Créditos
+---
 
-Desenvolvido para a pecuária brasileira com ❤️
-
-**SGPR - Tecnologia a serviço do campo**
+**SGPR** - Desenvolvido para modernizar a gestão pecuária brasileira 🇧🇷
 
