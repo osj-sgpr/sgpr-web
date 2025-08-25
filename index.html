@@ -157,7 +157,7 @@
             font-size: 1rem;
         }
 
-        .form-group input {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 15px;
             border: 2px solid #e0e0e0;
@@ -167,7 +167,7 @@
             background: white;
         }
 
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: #4CAF50;
             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
@@ -187,7 +187,7 @@
             margin-top: 10px;
         }
 
-        .login-btn:hover {
+        .login-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
         }
@@ -417,12 +417,17 @@
             margin-right: 10px;
         }
 
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .btn-primary {
             background: #4CAF50;
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             background: #45a049;
         }
 
@@ -431,7 +436,7 @@
             color: white;
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:hover:not(:disabled) {
             background: #5a6268;
         }
 
@@ -440,7 +445,7 @@
             color: white;
         }
 
-        .btn-danger:hover {
+        .btn-danger:hover:not(:disabled) {
             background: #c82333;
         }
 
@@ -688,7 +693,7 @@
             <form id="animalForm">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="animalNumber">Número</label>
+                        <label for="animalNumber">Número *</label>
                         <input type="text" id="animalNumber" name="numero" required>
                     </div>
                     <div class="form-group">
@@ -746,7 +751,7 @@
                 </div>
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('animalModal')">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Animal</button>
+                    <button type="submit" class="btn btn-primary" id="saveAnimalBtn">Salvar Animal</button>
                 </div>
             </form>
         </div>
@@ -809,7 +814,7 @@
                 </div>
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('financialModal')">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Transação</button>
+                    <button type="submit" class="btn btn-primary" id="saveTransactionBtn">Salvar Transação</button>
                 </div>
             </form>
         </div>
@@ -856,7 +861,7 @@
                 </div>
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('reproductionModal')">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Evento</button>
+                    <button type="submit" class="btn btn-primary" id="saveReproductionBtn">Salvar Evento</button>
                 </div>
             </form>
         </div>
@@ -907,7 +912,7 @@
                 </div>
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('vaccineModal')">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Vacinação</button>
+                    <button type="submit" class="btn btn-primary" id="saveVaccineBtn">Salvar Vacinação</button>
                 </div>
             </form>
         </div>
@@ -953,7 +958,7 @@
                 </div>
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('goalModal')">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar Meta</button>
+                    <button type="submit" class="btn btn-primary" id="saveGoalBtn">Salvar Meta</button>
                 </div>
             </form>
         </div>
@@ -981,6 +986,7 @@
         // Variáveis globais
         let currentUser = null;
         let currentAnimals = [];
+        let isProcessing = false; // Flag para evitar múltiplos cliques
 
         // Categorias financeiras (22 categorias em ordem cronológica)
         const FINANCIAL_CATEGORIES = {
@@ -1041,6 +1047,9 @@
         async function handleLogin(e) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const loginBtn = document.getElementById('loginBtn');
@@ -1070,6 +1079,7 @@
             } finally {
                 loginBtn.disabled = false;
                 loginBtn.textContent = '🚪 Entrar no Sistema';
+                isProcessing = false;
             }
         }
 
@@ -1120,13 +1130,15 @@
                     let monthlyExpenses = 0;
                     
                     transactions.forEach(transaction => {
-                        const transactionDate = new Date(transaction.data);
-                        if (transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear) {
-                            const value = parseFloat(transaction.valor) || 0;
-                            if (transaction.tipo === 'Receita') {
-                                monthlyRevenue += value;
-                            } else if (transaction.tipo === 'Despesa') {
-                                monthlyExpenses += value;
+                        if (transaction.data) {
+                            const transactionDate = new Date(transaction.data);
+                            if (transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear) {
+                                const value = parseFloat(transaction.valor) || 0;
+                                if (transaction.tipo === 'Receita') {
+                                    monthlyRevenue += value;
+                                } else if (transaction.tipo === 'Despesa') {
+                                    monthlyExpenses += value;
+                                }
                             }
                         }
                     });
@@ -1284,6 +1296,14 @@
         async function handleSaveAnimal(e) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const saveBtn = document.getElementById('saveAnimalBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = '🔄 Salvando...';
+            
             const formData = new FormData(e.target);
             const animalData = Object.fromEntries(formData.entries());
             
@@ -1305,6 +1325,10 @@
             } catch (error) {
                 console.error('Erro ao salvar animal:', error);
                 showAlert('Erro ao salvar animal.', 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+                isProcessing = false;
             }
         }
 
@@ -1438,6 +1462,14 @@
         async function handleSaveTransaction(e) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const saveBtn = document.getElementById('saveTransactionBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = '🔄 Salvando...';
+            
             const formData = new FormData(e.target);
             const transactionData = Object.fromEntries(formData.entries());
             
@@ -1459,6 +1491,10 @@
             } catch (error) {
                 console.error('Erro ao salvar transação:', error);
                 showAlert('Erro ao salvar transação.', 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+                isProcessing = false;
             }
         }
 
@@ -1576,6 +1612,14 @@
         async function handleSaveReproduction(e) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const saveBtn = document.getElementById('saveReproductionBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = '🔄 Salvando...';
+            
             const formData = new FormData(e.target);
             const reproductionData = Object.fromEntries(formData.entries());
             
@@ -1597,6 +1641,10 @@
             } catch (error) {
                 console.error('Erro ao salvar evento reprodutivo:', error);
                 showAlert('Erro ao salvar evento reprodutivo.', 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+                isProcessing = false;
             }
         }
 
@@ -1708,6 +1756,14 @@
         async function handleSaveVaccination(e) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const saveBtn = document.getElementById('saveVaccineBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = '🔄 Salvando...';
+            
             const formData = new FormData(e.target);
             const vaccinationData = Object.fromEntries(formData.entries());
             
@@ -1729,6 +1785,10 @@
             } catch (error) {
                 console.error('Erro ao salvar vacinação:', error);
                 showAlert('Erro ao salvar vacinação.', 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+                isProcessing = false;
             }
         }
 
@@ -1834,6 +1894,14 @@
         async function handleSaveGoal(e) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const saveBtn = document.getElementById('saveGoalBtn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = '🔄 Salvando...';
+            
             const formData = new FormData(e.target);
             const goalData = Object.fromEntries(formData.entries());
             
@@ -1854,6 +1922,10 @@
             } catch (error) {
                 console.error('Erro ao salvar meta:', error);
                 showAlert('Erro ao salvar meta.', 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+                isProcessing = false;
             }
         }
 
@@ -1901,7 +1973,7 @@
                         <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 15px;">
                             <h5>✅ Ficha de ${formType} gerada com sucesso!</h5>
                             <p><strong>Arquivo:</strong> ${response.data.fileName}</p>
-                            <a href="${response.data.fileUrl}" target="_blank" class="btn btn-primary" style="margin-top: 10px;">📥 Baixar Ficha</a>
+                            <p>Em breve será implementado o download automático das fichas em PDF.</p>
                         </div>
                     `;
                 } else {
@@ -1987,7 +2059,7 @@
                                     <div>Total Despesas</div>
                                 </div>
                                 <div style="text-align: center; background: white; padding: 15px; border-radius: 8px;">
-                                    <div style="font-size: 1.5rem; color: ${parseFloat(data.balance) >= 0 ? 'green' : 'red'};">R$ ${data.balance}</div>
+                                    <div style="font-size: 1.5rem; color: ${parseFloat(data.balance.replace(',', '.')) >= 0 ? 'green' : 'red'};">R$ ${data.balance}</div>
                                     <div>Saldo</div>
                                 </div>
                             </div>
@@ -2035,7 +2107,7 @@
                                     <div>Receita Mensal</div>
                                 </div>
                                 <div style="text-align: center; background: white; padding: 15px; border-radius: 8px;">
-                                    <div style="font-size: 1.2rem; color: ${parseFloat(data.monthlyBalance) >= 0 ? 'green' : 'red'};">R$ ${data.monthlyBalance}</div>
+                                    <div style="font-size: 1.2rem; color: ${parseFloat(data.monthlyBalance.replace(',', '.')) >= 0 ? 'green' : 'red'};">R$ ${data.monthlyBalance}</div>
                                     <div>Saldo Mensal</div>
                                 </div>
                             </div>
