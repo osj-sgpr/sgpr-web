@@ -1,71 +1,70 @@
 # SGPR - Sistema de Gestão de Propriedades Rurais
 
-Sistema web completo para gestão de propriedades rurais, desenvolvido com HTML, CSS, JavaScript e Google Apps Script.
+Sistema web completo para gestão de propriedades rurais com foco em pecuária.
 
 ## 🚀 Funcionalidades
 
 ### 🐄 Gestão de Animais
 - Cadastro completo de animais
-- Controle de peso e GMD
-- Genealogia e histórico
-- Busca e filtros avançados
+- Controle de peso e GMD (Ganho Médio Diário)
+- Genealogia e histórico reprodutivo
+- Previsão de data de abate
 
 ### 💰 Controle Financeiro
-- 22 categorias organizadas
+- 22 categorias organizadas cronologicamente
 - Receitas e despesas detalhadas
-- Relatórios financeiros
-- Controle de saldos
-
-### 💕 Controle Reprodutivo
-- Inseminação artificial
-- Diagnóstico de gestação
-- Previsão de partos
-- Histórico reprodutivo
-
-### 💉 Controle Sanitário
-- Vacinações programadas
-- Alertas de vencimento
-- Calendário sanitário
-- Controle de vermifugações
+- Relatórios financeiros automáticos
+- Controle de fluxo de caixa
 
 ### 📊 Relatórios e Fichas
-- Fichas PDF para campo
-- Relatórios zootécnicos
-- Análises de performance
+- Fichas de campo em PDF
+- Relatórios zootécnicos com cálculos automáticos
 - Estatísticas do rebanho
+- Análises de performance
 
-### 🎯 Sistema de Metas
-- Metas de GMD
-- Metas de taxa de prenhez
-- Metas financeiras
-- Acompanhamento de progresso
+### 🔔 Alertas e Lembretes
+- Vacinações pendentes
+- Partos previstos
+- Metas atingidas
+- Notificações automáticas
 
-## 🔧 Configuração
+## 🛠️ Tecnologias
 
-1. Configure o Google Apps Script com o código fornecido
-2. Atualize a URL da API no arquivo `index.html`
-3. Configure as planilhas do Google Sheets
-4. Publique no GitHub Pages
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Backend**: Google Apps Script
+- **Banco de Dados**: Google Sheets
+- **Hospedagem**: GitHub Pages
+- **PDFs**: Google Docs API
 
-## 📱 Compatibilidade
-
-- ✅ Desktop (Windows, Mac, Linux)
-- ✅ Mobile (iPhone, Android)
-- ✅ Tablet (iPad, Android)
-- ✅ Todos os navegadores modernos
+## 📋 Configuração
 
 ## 🔐 Segurança
 
-- Autenticação por usuário
-- Dados criptografados
-- Acesso por propriedade
+- Autenticação por email/senha
+- Dados isolados por propriedade
+- Comunicação criptografada
 - Backup automático no Google Drive
+
+## 📱 Responsivo
+
+Interface adaptada para:
+- Desktop
+- Tablet
+- Smartphone
+
+## 🎯 Como Usar
+
+1. Acesse o sistema via GitHub Pages
+2. Faça login com suas credenciais
+3. Sistema carrega automaticamente sua propriedade
+4. Use os módulos conforme necessário
 
 ## 📞 Suporte
 
-Para suporte técnico, entre em contato com o administrador do sistema.
+Para dúvidas ou problemas:
+- Email: osjbeta@gmail.com
 
----
+## 📄 Licença
 
-**SGPR** - Desenvolvido para modernizar a gestão pecuária brasileira 🇧🇷
+**SGPR** - Gestão rural moderna e eficiente 🚜🐄
 
